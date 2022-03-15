@@ -31,6 +31,7 @@ export const products = [
 
 export const featuredProducts = [
   {
+    _id: uuid(),
     title: "CognitiveSurplus",
     description: "Curiosity Rover 11 oz Ceramic Mug Lorem ipsum dolor sit amet.",
     featuredProductDescription: "Astronomy Gifts, NASA Rover Mug, Engineering Gifts. ",
@@ -39,6 +40,7 @@ export const featuredProducts = [
     image: "/assets/products/products-card-images/curiosity-mug-card-img.webp",
   },
   {
+    _id: uuid(),
     title: "KnittedLemonStudio",
     description: "Orion, Astronomy Print Of Orion Constellation In The Night Sky, .",
     featuredProductDescription: "Orion's Belt Star Map, Astronomy Gift, Orion Nebula, Gifts For Stargazers. ",
@@ -47,6 +49,7 @@ export const featuredProducts = [
     image: "/assets/products/products-card-images/painting-card-img.jpg",
   },
   {
+    _id: uuid(),
     title: "EastonWoodworks",
     description: "Orion Constellation Keychain.",
     featuredProductDescription: "Science Keychain - Astronomy Gift - Astronomy Keychain - Orion Keychain - Orion Nebula. ",
@@ -55,6 +58,7 @@ export const featuredProducts = [
     image: "/assets/products/products-card-images/key-chain-card-img.jpg",
   },
   {
+    _id: uuid(),
     title: "Chopshopstore",
     description: "60 Years of Space Exploration in Pasadena, CA.",
     featuredProductDescription: "Celebrating 60 years of space exploration.",
