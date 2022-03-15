@@ -1,9 +1,19 @@
-function App() {
-  return (
-    <div className="App">
-      <h1>Orion store</h1>
-    </div>
-  );
-}
+import axios from "axios";
+import { Route, Routes } from "react-router-dom";
+import { Base } from "./components";
+import { Cart, Home, ProductListing, Wishlist } from "./pages";
 
-export default App;
+const App = () => {
+  return (
+    <Base>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<ProductListing />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+      </Routes>
+    </Base>
+  );
+};
+
+export { App };
