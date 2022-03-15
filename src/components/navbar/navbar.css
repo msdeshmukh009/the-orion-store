@@ -1,0 +1,33 @@
+/***nav-bar***/
+.nav {
+  box-shadow: var(--nav-bar-shadow);
+}
+.nav-header {
+  width: 200px;
+  justify-content: space-around;
+  align-items: baseline;
+}
+.nav-link {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+.nav-heading {
+  font-family: "ultraregular", sans-serif;
+
+  font-size: 2rem;
+}
+/*******/
+
+.burger-menu {
+  display: none;
+}
+
+/*** media-query ***/
+@media only screen and (max-width: 1000px) {
+  .nav-list li + li {
+    display: none;
+  }
+  .burger-menu {
+    display: block;
+  }
+}
