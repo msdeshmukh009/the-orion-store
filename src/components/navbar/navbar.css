@@ -1,12 +1,17 @@
 /***nav-bar***/
 .nav {
   box-shadow: var(--nav-bar-shadow);
-  position: sticky;
-  top: 0;
 }
 .nav-header {
   width: 200px;
   justify-content: space-around;
+  align-items: baseline;
+}
+.nav-heading {
+  font-family: "ultraregular", sans-serif;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 2rem;
 }
 /*******/
 
