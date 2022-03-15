@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./navbar.css";
 const Navbar = () => {
   return (
@@ -6,7 +7,9 @@ const Navbar = () => {
         <div className="burger-menu">
           <i className="fas fa-bars"></i>
         </div>
-        <h2 className="nav-heading">Orion</h2>
+        <Link to="/" className="nav-link">
+          <h2 className="nav-heading">Orion</h2>
+        </Link>
       </header>
 
       <div className="nav-search-bar">
@@ -18,25 +21,25 @@ const Navbar = () => {
 
       <ul className="inline-style-list no-style-list nav-list flex-total-center">
         <li>
-          <a className="anchor-tag-badge-container">
+          <Link to="/cart" className="anchor-tag-badge-container">
             <span className="badge-container">
               <i className="fas fa-shopping-cart"></i>
               <span className="status-badge number-badge flex-total-center">3</span>
             </span>
-          </a>
+          </Link>
         </li>
 
         <li>
-          <a className="anchor-tag-badge-container" href="example.com">
+          <Link to="/wishlist" className="anchor-tag-badge-container">
             <span className="badge-container">
               <i className="fas fa-heart"></i>
               <span className="status-badge number-badge flex-total-center">3</span>
             </span>
-          </a>
+          </Link>
         </li>
 
         <li>
-          <a className="anchor-tag-badge-container" href="/pages/profile/profile.html">
+          <a className="anchor-tag-badge-container">
             <i className="fas fa-user "></i>
           </a>
         </li>
