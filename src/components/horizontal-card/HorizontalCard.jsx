@@ -11,8 +11,8 @@ const HorizontalCard = ({ title, description, featuredProductDescription, price,
           <span className="text-bold card-heading">{title}</span>
           <span className="card-sub-heading text-gray">{description}</span>
           <div className="price">
-            <span className="card-sub-heading text-md">{price} </span>
-            <span className="text-line-through text-xs text-gray">{discountedPrice}</span>
+            <span className="card-sub-heading text-md">₹{price} </span>
+            <span className="text-line-through text-xs text-gray">₹{discountedPrice}</span>
           </div>
           <div className="card-paragraph">{featuredProductDescription}</div>
         </div>
