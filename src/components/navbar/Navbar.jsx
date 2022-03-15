@@ -6,7 +6,7 @@ const Navbar = () => {
         <div className="burger-menu">
           <i className="fas fa-bars"></i>
         </div>
-        <h2>Orion Store</h2>
+        <h2 className="nav-heading">Orion</h2>
       </header>
 
       <div className="nav-search-bar">
