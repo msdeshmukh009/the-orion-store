@@ -7,10 +7,13 @@
   justify-content: space-around;
   align-items: baseline;
 }
-.nav-heading {
-  font-family: "ultraregular", sans-serif;
+.nav-link {
   text-decoration: none;
   color: var(--primary-color);
+}
+.nav-heading {
+  font-family: "ultraregular", sans-serif;
+
   font-size: 2rem;
 }
 /*******/
