@@ -1,6 +1,7 @@
 /***nav-bar***/
 .nav {
   box-shadow: var(--nav-bar-shadow);
+  grid-area: nav;
 }
 .nav-header {
   width: 200px;
