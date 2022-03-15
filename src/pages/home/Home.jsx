@@ -2,6 +2,7 @@ import "./home.css";
 import { CategoryCard, HorizontalCard } from "../../components";
 import { categories } from "../../backend/db/categories";
 import { featuredProducts, products } from "../../backend/db/products";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <>
@@ -11,9 +12,9 @@ const Home = () => {
           <h2 className="banner-heading">The orion store</h2>
           <p className="banner-sub-heading">Lorem ipsum dolor sit amet Lorem, ipsum dolor.</p>
           <div className="banner-cta flex-total-center">
-            <a href="/pages/product-listing/products.html" className="btn btn-primary">
+            <Link to="/products" className="btn btn-primary">
               Shop now
-            </a>
+            </Link>
             <a href="#categories" className="btn btn-outline-primary">
               Categories
             </a>
@@ -37,12 +38,13 @@ const Home = () => {
 
       {/* featured-products */}
       <section className="text-center">
-        <h1 class="section-heading">Featured Products</h1>
-        <hr class="title-hr" />
+        <h1 className="section-heading">Featured Products</h1>
+        <hr className="title-hr" />
 
         <div className="grid-50-50 featured-products">
-          {featuredProducts.map(({ title, description, featuredProductDescription, price, discountedPrice, image }) => (
+          {featuredProducts.map(({ _id, title, description, featuredProductDescription, price, discountedPrice, image }) => (
             <HorizontalCard
+              key={_id}
               title={title}
               description={description}
               featuredProductDescription={featuredProductDescription}
