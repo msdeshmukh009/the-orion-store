@@ -1,0 +1,25 @@
+/***nav-bar***/
+.nav {
+  box-shadow: var(--nav-bar-shadow);
+  position: sticky;
+  top: 0;
+}
+.nav-header {
+  width: 200px;
+  justify-content: space-around;
+}
+/*******/
+
+.burger-menu {
+  display: none;
+}
+
+/*** media-query ***/
+@media only screen and (max-width: 1000px) {
+  .nav-list li + li {
+    display: none;
+  }
+  .burger-menu {
+    display: block;
+  }
+}
