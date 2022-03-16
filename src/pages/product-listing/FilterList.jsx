@@ -8,13 +8,26 @@ const FilterList = ({ filterStyles, setFilterStyles }) => {
           <i className="fas fa-times"></i>
         </span>
       </button>
+
       <div className="filter-title">
         <h3>Filters</h3>
-        <button className="link-btn" href="#">
-          Clear
-        </button>
+        <button className="link-btn">Clear</button>
       </div>
-      <ul className="no-style-list styled-list filter-list">
+
+      <ul className="no-style-list styled-list filter-list flex-column">
+        <li className="filter-list-item">
+          <h3>Price</h3>
+          <div>
+            <input type="radio" name="price" id="high-to-low" />
+            <label htmlFor="high-to-low">Price-high to low</label>
+          </div>
+          <div>
+            <input type="radio" name="price" id="low-to-high" />
+            <label htmlFor="low-to-high">Price-low to high</label>
+          </div>
+        </li>
+
+        {/*         
         <li className="text-bold">Price</li>
         <li>
           <input type="radio" name="price" id="high-to-low" />
@@ -24,40 +37,97 @@ const FilterList = ({ filterStyles, setFilterStyles }) => {
           <input type="radio" name="price" id="low-to-high" />
           <label htmlFor="low-to-high">Price-low to high</label>
         </li>
-        <hr className="divider-hr" />
-        <li className="text-bold">Select price range</li>
+        <hr className="divider-hr" /> */}
+
+        <li>
+          <h3 className="price-range-heading">Select price range</h3>
+          <MultiRangeSlider min="1000" max="10000" />
+        </li>
+
+        {/* <li className="text-bold">Select price range</li>
         <MultiRangeSlider min="1000" max="10000" />
-        <hr className="divider-hr" />
-        <li className="text-bold">Categories</li>
+        <hr className="divider-hr" /> */}
+
+        <li className="filter-list-item">
+          <h3>Categories</h3>
+          <div>
+            <input type="checkbox" name="category" id="coffee-mugs" />
+            <label htmlFor="coffee-mugs">Coffee Mugs</label>
+          </div>
+          <div>
+            <input type="checkbox" name="category" id="posters" />
+            <label htmlFor="posters">Posters</label>
+          </div>
+          <div>
+            <input type="checkbox" name="category" id="t-shirts" />
+            <label htmlFor="t-shirts">T-shirts</label>
+          </div>
+          <div>
+            <input type="checkbox" name="category" id="accessories" />
+            <label htmlFor="accessories">Accessories</label>
+          </div>
+        </li>
+
+        {/* <li className="text-bold">Categories</li>
         <li>
-          <input type="checkbox" name="category" id="" />
-          Coffee Mugs
+          <input type="checkbox" name="category" id="coffee-mugs" />
+          <label htmlFor="coffee-mugs">Coffee Mugs</label>
         </li>
         <li>
-          <input type="checkbox" name="category" id="" />
-          Posters
+          <input type="checkbox" name="category" id="posters" />
+          <label htmlFor="posters">Posters</label>
         </li>
         <li>
-          <input type="checkbox" name="category" id="" />
-          T-shirts
+          <input type="checkbox" name="category" id="t-shirts" />
+          <label htmlFor="t-shirts">T-shirts</label>
         </li>
         <li>
-          <input type="checkbox" name="category" id="" />
-          Accessories
+          <input type="checkbox" name="category" id="accessories" />
+          <label htmlFor="accessories">Accessories</label>
         </li>
-        <hr className="divider-hr" />
-        <li className="text-bold">Rating</li>
+        <hr className="divider-hr" /> */}
+        <li className="filter-list-item">
+          <h3>Rating</h3>
+          <div>
+            <input type="radio" name="rating" id="4-star" />
+            <label htmlFor="4-star">4 stars and above</label>
+          </div>
+          <div>
+            <input type="radio" name="rating" id="3-stars" />
+            <label htmlFor="3-stars">3 stars and above</label>
+          </div>
+          <div>
+            <input type="radio" name="rating" id="2-stars" />
+            <label htmlFor="2-stars">2 stars and above</label>
+          </div>
+          <div>
+            <input type="radio" name="rating" id="1-stars" />
+            <label htmlFor="1-stars">1 stars and above</label>
+          </div>
+        </li>
+        {/* <li className="text-bold">Rating</li>
         <li>
-          <input type="radio" name="rating" id="" />4 stars and above
+          <input type="radio" name="rating" id="4-star" />
+          <label htmlFor="4-star">4 stars and above</label>
         </li>
         <li>
-          <input type="radio" name="rating" id="" />3 stars and above
+          <input type="radio" name="rating" id="3-stars" />
+          <label htmlFor="3-stars">3 stars and above</label>
         </li>
         <li>
-          <input type="radio" name="rating" id="" />2 stars and above
+          <input type="radio" name="rating" id="2-stars" />
+          <label htmlFor="2-stars">2 stars and above</label>
         </li>
         <li>
-          <input type="radio" name="rating" id="" />1 stars and above
+          <input type="radio" name="rating" id="1-stars" />
+          <label htmlFor="1-stars">1 stars and above</label>
+        </li> */}
+        <li>
+          <h3>Other</h3>
+          <div>
+            <input type="checkbox" name="include-out-of-stock" id="include-out-of-stock" />
+            <label htmlFor="include-out-of-stock">Include out of stock</label>
+          </div>
         </li>
       </ul>
     </section>
