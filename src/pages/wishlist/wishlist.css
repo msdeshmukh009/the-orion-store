@@ -1,3 +1,7 @@
+.wishlist-products {
+  gap: var(--lg-space);
+  padding: var(--lg-space);
+}
 .wishlist-main-products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
