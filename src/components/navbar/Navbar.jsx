@@ -39,9 +39,9 @@ const Navbar = () => {
         </li>
 
         <li>
-          <a className="anchor-tag-badge-container">
+          <Link to="/signin" className="anchor-tag-badge-container ">
             <i className="fas fa-user "></i>
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

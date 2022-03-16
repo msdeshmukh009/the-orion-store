@@ -1,7 +1,16 @@
+import { ProductsGrid } from "./ProductsGrid";
+import { FilterList } from "./FilterList";
+import { useState } from "react";
+
 const ProductListing = () => {
+  const [filterStyles, setFilterStyles] = useState("filters");
+
   return (
     <>
-      <h1 className="text-center">Products</h1>
+      <div className="grid-container">
+        <FilterList filterStyles={filterStyles} setFilterStyles={setFilterStyles} />
+        <ProductsGrid setFilterStyles={setFilterStyles} />
+      </div>
     </>
   );
 };

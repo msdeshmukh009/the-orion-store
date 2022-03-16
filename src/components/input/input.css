@@ -1,0 +1,21 @@
+.input-grp {
+  position: relative;
+}
+.form-label {
+  font-size: 1rem;
+  position: absolute;
+  top: 8px;
+  left: 15px;
+  background: var(--background-color);
+  transition: all 0.3s ease;
+}
+.input-grp input:focus + label,
+.input-grp input:valid + label,
+.input-grp input:placeholder-shown + label {
+  font-size: 12px;
+  top: -8px;
+}
+
+.input-grp input:focus + label {
+  color: var(--primary-color);
+}

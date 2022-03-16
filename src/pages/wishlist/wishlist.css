@@ -1,0 +1,16 @@
+.wishlist-products {
+  gap: var(--lg-space);
+  padding: var(--lg-space);
+}
+.wishlist-main-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-items: center;
+  gap: var(--sm-space);
+  max-width: 1500px;
+}
+@media only screen and (max-width: 600px) {
+  .wishlist-main-products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
