@@ -1,8 +1,9 @@
 import "./home.css";
 import { CategoryCard, HorizontalCard } from "../../components";
 import { categories } from "../../backend/db/categories";
-import { featuredProducts, products } from "../../backend/db/products";
+import { featuredProducts } from "../../backend/db/products";
 import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <>
