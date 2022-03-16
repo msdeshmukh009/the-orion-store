@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import { Base } from "./components";
 import { Cart, Home, ProductListing, Wishlist } from "./pages";
