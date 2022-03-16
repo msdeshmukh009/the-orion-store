@@ -20,7 +20,7 @@ const WishlistCard = ({ product }) => {
         <button className="btn btn-primary block-btn">
           <span className="btn-icon">
             <i className="fas fa-shopping-cart"></i>
-          </span>{" "}
+          </span>
           Add to cart
         </button>
       </div>
