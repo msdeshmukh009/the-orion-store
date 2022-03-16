@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Base } from "./components";
-import { Cart, Home, ProductListing, Wishlist } from "./pages";
+import { Cart, Home, ProductListing, Wishlist, Signin, Signup } from "./pages";
 
 const App = () => {
   return (
@@ -10,6 +10,8 @@ const App = () => {
         <Route path="/products" element={<ProductListing />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </Base>
   );
