@@ -1,0 +1,16 @@
+.order-counter {
+  display: flex;
+  column-gap: var(--md-space);
+  width: 100%;
+}
+.quantity-input {
+  width: 30px;
+  height: 30px;
+}
+.counter-btn {
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
