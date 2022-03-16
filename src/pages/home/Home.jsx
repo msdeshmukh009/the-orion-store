@@ -1,14 +1,19 @@
 import "./home.css";
-import { CategoryCard, HorizontalCard } from "../../components";
-import { categories } from "../../backend/db/categories";
-import { featuredProducts } from "../../backend/db/products";
+import { CategoryCard, HorizontalCard, Loading } from "../../components";
 import { Link } from "react-router-dom";
+import { useCategory, useProducts } from "../../context";
 
 const Home = () => {
+  const { categories, loader: categoryLoader, error: categoryError } = useCategory();
+  const { products, loader: productLoader, error: productError } = useProducts();
+  const featuredProducts = products.filter(product => product.isFeatured);
   return (
     <>
       {/* banner */}
-      <div className="banner flex-total-center" style={{ backgroundImage: `url(/assets/bg-img3.jpg)` }}>
+      <div
+        className="banner flex-total-center"
+        style={{ backgroundImage: `url(/assets/bg-img3.jpg)` }}
+      >
         <div className="banner-content text-center flex-column">
           <h2 className="banner-heading">The orion store</h2>
           <p className="banner-sub-heading">Lorem ipsum dolor sit amet Lorem, ipsum dolor.</p>
@@ -30,30 +35,44 @@ const Home = () => {
         <hr className="title-hr" />
 
         <div className="category-grid">
-          {categories.map(({ _id, categoryName, image }) => (
-            <CategoryCard key={_id} category={categoryName} categoryImage={image} />
-          ))}
+          {categoryLoader && <Loading />}
+          {categoryError && <div>{categoryError}</div>}
+          {categories &&
+            categories.map(({ _id, categoryName, image }) => (
+              <CategoryCard key={_id} category={categoryName} categoryImage={image} />
+            ))}
         </div>
       </section>
       {/* category-section-end */}
 
       {/* featured-products */}
-      <section className="text-center">
+      <section className="text-center featured-product-section">
         <h1 className="section-heading">Featured Products</h1>
         <hr className="title-hr" />
-
+        {productLoader && <Loading />}
+        {productError && <div>{productError}</div>}
         <div className="grid-50-50 featured-products">
-          {featuredProducts.map(({ _id, title, description, featuredProductDescription, price, discountedPrice, image }) => (
-            <HorizontalCard
-              key={_id}
-              title={title}
-              description={description}
-              featuredProductDescription={featuredProductDescription}
-              price={price}
-              discountedPrice={discountedPrice}
-              image={image}
-            />
-          ))}
+          {featuredProducts.map(
+            ({
+              _id,
+              title,
+              description,
+              featuredProductDescription,
+              price,
+              discountedPrice,
+              image,
+            }) => (
+              <HorizontalCard
+                key={_id}
+                title={title}
+                description={description}
+                featuredProductDescription={featuredProductDescription}
+                price={price}
+                discountedPrice={discountedPrice}
+                image={image}
+              />
+            )
+          )}
         </div>
       </section>
       {/* featured-products-end */}
