@@ -7,3 +7,4 @@ export { Base } from "./base/Base";
 export { VerticalCard } from "./vertical-card/VerticalCard";
 export { MultiRangeSlider } from "./multirange-slider/MultirangeSlider";
 export { CartCard } from "./cart-card/CartCard";
+export { WishlistCard } from "./wishlist-card/WishlistCard";
