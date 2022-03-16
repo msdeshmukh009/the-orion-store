@@ -44,7 +44,7 @@ const Wishlist = () => {
   return (
     <>
       <div className="wishlist-products flex-column">
-        <h1 className="text-center">My Wishlist</h1>
+        <h1 className="text-center">My Wishlist(4)</h1>
         <main className="wishlist-main-products">
           {wishlist.map(product => (
             <WishlistCard key={product._id} product={product} />
