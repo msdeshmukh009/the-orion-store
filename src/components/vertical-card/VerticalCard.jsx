@@ -12,8 +12,12 @@ const VerticalCard = ({ image, title, description, price, discountedPrice }) => 
         <span className="text-bold card-heading">{title}</span>
         <span className="card-sub-heading text-gray">{description}</span>
         <div className="price">
-          <span className="card-sub-heading text-md">₹ {price} </span>
-          <span className="text-line-through text-xs text-gray">₹ {discountedPrice}</span>
+          <span className="card-sub-heading text-md">
+            ₹ {new Intl.NumberFormat("en-IN").format(price)}
+          </span>
+          <span className="text-line-through text-xs text-gray">
+            ₹ {new Intl.NumberFormat("en-IN").format(discountedPrice)}
+          </span>
         </div>
       </div>
       <div className="card-cta-vertical">

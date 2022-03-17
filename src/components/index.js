@@ -9,3 +9,4 @@ export { MultiRangeSlider } from "./multirange-slider/MultirangeSlider";
 export { CartCard } from "./cart-card/CartCard";
 export { WishlistCard } from "./wishlist-card/WishlistCard";
 export { Input } from "./input/Input";
+export { Loading } from "./loading/Loading";

@@ -1,4 +1,11 @@
-const HorizontalCard = ({ title, description, featuredProductDescription, price, discountedPrice, image }) => {
+const HorizontalCard = ({
+  title,
+  description,
+  featuredProductDescription,
+  price,
+  discountedPrice,
+  image,
+}) => {
   return (
     <div className="card horizontal-card">
       <span className="card-badge">New</span>
@@ -11,8 +18,12 @@ const HorizontalCard = ({ title, description, featuredProductDescription, price,
           <span className="text-bold card-heading">{title}</span>
           <span className="card-sub-heading text-gray">{description}</span>
           <div className="price">
-            <span className="card-sub-heading text-md">₹{price} </span>
-            <span className="text-line-through text-xs text-gray">₹{discountedPrice}</span>
+            <span className="card-sub-heading text-md">
+              ₹{new Intl.NumberFormat("en-IN").format(price)}
+            </span>
+            <span className="text-line-through text-xs text-gray">
+              ₹{new Intl.NumberFormat("en-IN").format(discountedPrice)}
+            </span>
           </div>
           <div className="card-paragraph">{featuredProductDescription}</div>
         </div>

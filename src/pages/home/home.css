@@ -57,6 +57,7 @@
   gap: var(--sm-space);
   justify-items: center;
   align-items: center;
+  min-height: 256px;
   max-width: 1500px;
   margin: auto;
 }
@@ -64,6 +65,9 @@
 
 /*******/
 /*** featured-product-section ***/
+.featured-product-section {
+  min-height: 400px;
+}
 .featured-products {
   width: 90%;
   margin: auto;
