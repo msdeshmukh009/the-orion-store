@@ -2,6 +2,9 @@
 .nav {
   box-shadow: var(--nav-bar-shadow);
   grid-area: nav;
+  z-index: 1005;
+  max-width: 1800px;
+  margin: auto;
 }
 .nav-header {
   width: 200px;
