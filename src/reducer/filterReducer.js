@@ -1,15 +1,15 @@
+import { filterActions } from "./constant";
+const { SORT, TOGGLE_OUT_OF_STOCK, ADD_CATEGORY, SET_RATING, SET_RANGE, SET_MIN, SET_MAX, CLEAR } =
+  filterActions;
 const filterReducer = (state, action) => {
   switch (action.type) {
-    case "SORT":
+    case SORT:
       return { ...state, sort: action.payload };
 
-    case "TOGGLE_OUT_OF_STOCK":
+    case TOGGLE_OUT_OF_STOCK:
       return { ...state, includeOutOfStock: !state.includeOutOfStock };
 
-    case "TOGGLE_FAST_DELIVERY":
-      return { ...state, includeSlowDelivery: !state.includeSlowDelivery };
-
-    case "ADD_CATEGORY":
+    case ADD_CATEGORY:
       if (action.payload === "all") return { ...state, category: [] };
       const isCategoryExist = state.category.includes(action.payload);
       return isCategoryExist
@@ -19,10 +19,10 @@ const filterReducer = (state, action) => {
           }
         : { ...state, category: [...state.category, action.payload] };
 
-    case "SET_RATING":
+    case SET_RATING:
       return { ...state, rating: action.payload };
 
-    case "SET_RANGE":
+    case SET_RANGE:
       return {
         ...state,
         range: {
@@ -31,19 +31,19 @@ const filterReducer = (state, action) => {
         },
       };
 
-    case "SET_MIN":
+    case SET_MIN:
       return {
         ...state,
         range: { ...state.range, min: action.payload },
       };
 
-    case "SET_MAX":
+    case SET_MAX:
       return {
         ...state,
         range: { ...state.range, max: action.payload },
       };
 
-    case "CLEAR":
+    case CLEAR:
       return {
         ...state,
         sort: "",
