@@ -8,12 +8,12 @@ const App = () => {
     <Base>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductListing />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/mockman" element={<Mockman />} />
+        <Route path="products" element={<ProductListing />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="wishlist" element={<Wishlist />} />
+        <Route path="signin" element={<Signin />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="mockman" element={<Mockman />} />
       </Routes>
     </Base>
   );
