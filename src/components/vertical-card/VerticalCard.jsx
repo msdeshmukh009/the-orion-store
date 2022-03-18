@@ -18,8 +18,8 @@ const VerticalCard = ({ product }) => {
           className="responsive-img rounded-top-corner-img"
           src={image}
           alt={description}
-          width="340px"
-          height="270px"
+          width="340"
+          height="270"
         />
         <div className="rating-info">
           <span>
