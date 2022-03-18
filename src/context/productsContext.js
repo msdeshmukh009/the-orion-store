@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { minMaxReduce } from "../utils";
 
 const categoryContext = createContext();
 
@@ -10,6 +11,11 @@ const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState("");
+
+  const priceRange = products.reduce(minMaxReduce, {
+    min: products[0]?.price,
+    max: products[0]?.price,
+  });
 
   useEffect(() => {
     (async () => {
@@ -28,7 +34,7 @@ const ProductsProvider = ({ children }) => {
     })();
   }, []);
   return (
-    <categoryContext.Provider value={{ products, loader, error }}>
+    <categoryContext.Provider value={{ products, priceRange, loader, error }}>
       {children}
     </categoryContext.Provider>
   );

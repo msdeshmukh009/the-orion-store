@@ -1,6 +1,8 @@
 /*** container ***/
 .grid-container {
   min-height: calc(100vh - 200px);
+  max-width: 1800px;
+  margin: auto;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-areas:
@@ -72,11 +74,14 @@
 /*** products-grid ***/
 .products {
   grid-area: main-products;
+  min-height: calc(100vh - 300px);
+  padding: var(--sm-space);
 }
 .main-products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--sm-space);
+  min-height: calc(100vh - 300px);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--lg-space);
   position: relative;
   justify-items: center;
 }
