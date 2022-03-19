@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context";
 import "./navbar.css";
 const Navbar = () => {
+  const { state: user, logout } = useAuth();
+
   return (
     <nav className="nav">
       <header className="nav-header flex-total-center">
@@ -38,11 +41,19 @@ const Navbar = () => {
           </Link>
         </li>
 
-        <li>
-          <Link to="/signin" className="anchor-tag-badge-container ">
-            <i className="fas fa-user "></i>
-          </Link>
-        </li>
+        {user.token ? (
+          <li>
+            <button className="btn btn-outline" onClick={() => logout()}>
+              <i className="fas fa-sign-out"></i>
+            </button>
+          </li>
+        ) : (
+          <li>
+            <Link to="/signin" className="anchor-tag-badge-container ">
+              <i className="fas fa-user "></i>
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );
