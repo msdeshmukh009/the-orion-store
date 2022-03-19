@@ -8,4 +8,10 @@ const filterActions = {
   SET_MAX: "SET_MAX",
   CLEAR: "CLEAR",
 };
-export { filterActions };
+
+const authActions = {
+  LOGIN_USER: "LOGIN_USER",
+  LOGOUT_USER: "LOGOUT_USER",
+};
+
+export { filterActions, authActions };
