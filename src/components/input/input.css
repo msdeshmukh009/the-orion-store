@@ -1,8 +1,12 @@
 .input-grp {
   position: relative;
+  margin-bottom: var(--lg-space);
+}
+.txt-message {
+  position: absolute;
 }
 .form-label {
-  font-size: 1rem;
+  font-size: 0.8rem;
   position: absolute;
   top: 8px;
   left: 15px;
