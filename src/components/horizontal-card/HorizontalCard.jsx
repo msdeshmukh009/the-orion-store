@@ -1,11 +1,6 @@
-const HorizontalCard = ({
-  title,
-  description,
-  featuredProductDescription,
-  price,
-  discountedPrice,
-  image,
-}) => {
+const HorizontalCard = ({ product }) => {
+  const { title, description, featuredProductDescription, originalPrice, discountedPrice, image } =
+    product;
   return (
     <div className="card horizontal-card">
       <span className="card-badge">New</span>
@@ -19,10 +14,10 @@ const HorizontalCard = ({
           <span className="card-sub-heading text-gray">{description}</span>
           <div className="price">
             <span className="card-sub-heading text-md">
-              ₹{new Intl.NumberFormat("en-IN").format(price)}
+              ₹{new Intl.NumberFormat("en-IN").format(discountedPrice)}
             </span>
             <span className="text-line-through text-xs text-gray">
-              ₹{new Intl.NumberFormat("en-IN").format(discountedPrice)}
+              {new Intl.NumberFormat("en-IN").format(originalPrice)}
             </span>
           </div>
           <div className="card-paragraph">{featuredProductDescription}</div>
@@ -31,7 +26,6 @@ const HorizontalCard = ({
         <div className="card-call-to-action-horizontal">
           <button className="btn btn-primary block-btn">
             <span className="btn-icon">
-              {" "}
               <i className="fas fa-shopping-cart"></i>
             </span>
             Add to cart

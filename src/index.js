@@ -4,7 +4,13 @@ import "./styles.css";
 import { App } from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthProvider, CategoryProvider, FilterProvider, ProductsProvider } from "./context";
+import {
+  AuthProvider,
+  CartProvider,
+  CategoryProvider,
+  FilterProvider,
+  ProductsProvider,
+} from "./context";
 
 // Call make Server
 makeServer();
@@ -13,13 +19,15 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <ProductsProvider>
-          <CategoryProvider>
-            <FilterProvider>
-              <App />
-            </FilterProvider>
-          </CategoryProvider>
-        </ProductsProvider>
+        <CartProvider>
+          <ProductsProvider>
+            <CategoryProvider>
+              <FilterProvider>
+                <App />
+              </FilterProvider>
+            </CategoryProvider>
+          </ProductsProvider>
+        </CartProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,

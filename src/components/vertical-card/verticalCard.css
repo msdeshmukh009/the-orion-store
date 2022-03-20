@@ -23,3 +23,9 @@
   position: relative;
   z-index: -1;
 }
+.card-cta-vertical .btn {
+  line-height: 1;
+}
+.btn-primary:disabled {
+  background-color: var(--lighter-primary-color);
+}

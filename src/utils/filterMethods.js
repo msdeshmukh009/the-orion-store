@@ -1,10 +1,10 @@
 const sortProducts = (sortBy, data) => {
   let tempData = [...data];
   if (sortBy === "high-to-low") {
-    tempData.sort((a, b) => b.price - a.price);
+    tempData.sort((a, b) => b.discountedPrice - a.discountedPrice);
   }
   if (sortBy === "low-to-high") {
-    tempData.sort((a, b) => a.price - b.price);
+    tempData.sort((a, b) => a.discountedPrice - b.discountedPrice);
   }
   return tempData;
 };
@@ -24,17 +24,18 @@ const filterProducts = (state, data) => {
 
   if (state.range) {
     tempData = tempData.filter(
-      product => state.range.min <= product.price && product.price <= state.range.max
+      product =>
+        state.range.min <= product.discountedPrice && product.discountedPrice <= state.range.max
     );
   }
   return tempData;
 };
 
 const minMaxReduce = (acc, curr) => {
-  if (curr.price > acc.max) {
-    return { ...acc, max: curr.price };
-  } else if (acc.min > curr.price) {
-    return { ...acc, min: curr.price };
+  if (curr.discountedPrice > acc.max) {
+    return { ...acc, max: curr.discountedPrice };
+  } else if (acc.min > curr.discountedPrice) {
+    return { ...acc, min: curr.discountedPrice };
   } else {
     return acc;
   }

@@ -13,8 +13,8 @@ const ProductsProvider = ({ children }) => {
   const [error, setError] = useState("");
 
   const priceRange = products.reduce(minMaxReduce, {
-    min: products[0]?.price,
-    max: products[0]?.price,
+    min: products[0]?.discountedPrice,
+    max: products[0]?.discountedPrice,
   });
 
   useEffect(() => {
