@@ -1,0 +1,6 @@
+.hide-overlay {
+  display: none;
+}
+.overlay-container {
+  z-index: 3;
+}
