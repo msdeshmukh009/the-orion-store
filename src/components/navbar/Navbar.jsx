@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context";
+import { useAuth, useCart } from "../../context";
 import "./navbar.css";
 const Navbar = () => {
-  const { state: user, logout } = useAuth();
-
+  const {
+    state: { token },
+    logout,
+  } = useAuth();
+  const {
+    state: { cartItems },
+  } = useCart();
   return (
     <nav className="nav">
       <header className="nav-header flex-total-center">
@@ -22,12 +27,25 @@ const Navbar = () => {
         <input className="form-field" type="search" placeholder="search" />
       </div>
 
-      <ul className="inline-style-list no-style-list nav-list flex-total-center">
+      <ul className="inline-style-list no-style-list nav-list flex-total-center ">
+        <li>
+          <Link className="link-btn" to="/products">
+            Shop now
+          </Link>
+        </li>
         <li>
           <Link to="/cart" className="anchor-tag-badge-container">
             <span className="badge-container">
               <i className="fas fa-shopping-cart"></i>
-              <span className="status-badge number-badge flex-total-center">3</span>
+              <span
+                className={
+                  token && cartItems.length > 0
+                    ? "status-badge number-badge flex-total-center"
+                    : "display-none"
+                }
+              >
+                {cartItems.length}
+              </span>
             </span>
           </Link>
         </li>
@@ -36,12 +54,16 @@ const Navbar = () => {
           <Link to="/wishlist" className="anchor-tag-badge-container">
             <span className="badge-container">
               <i className="fas fa-heart"></i>
-              <span className="status-badge number-badge flex-total-center">3</span>
+              <span
+                className={token ? "status-badge number-badge flex-total-center" : "display-none"}
+              >
+                0
+              </span>
             </span>
           </Link>
         </li>
 
-        {user.token ? (
+        {token ? (
           <li>
             <button className="btn btn-outline" onClick={() => logout()}>
               <i className="fas fa-sign-out"></i>

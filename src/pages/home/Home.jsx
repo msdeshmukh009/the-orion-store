@@ -52,27 +52,9 @@ const Home = () => {
         {productLoader && <Loading />}
         {productError && <div>{productError}</div>}
         <div className="grid-50-50 featured-products">
-          {featuredProducts.map(
-            ({
-              _id,
-              title,
-              description,
-              featuredProductDescription,
-              price,
-              discountedPrice,
-              image,
-            }) => (
-              <HorizontalCard
-                key={_id}
-                title={title}
-                description={description}
-                featuredProductDescription={featuredProductDescription}
-                price={price}
-                discountedPrice={discountedPrice}
-                image={image}
-              />
-            )
-          )}
+          {featuredProducts.map(product => (
+            <HorizontalCard key={product._id} product={product} />
+          ))}
         </div>
       </section>
       {/* featured-products-end */}

@@ -1,9 +1,37 @@
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth, useCart } from "../../context";
+import { useState } from "react";
 import "./verticalCard.css";
 const VerticalCard = ({ product }) => {
-  const { image, title, description, price, discountedPrice, rating, numberOfReviews, inStock } =
-    product;
+  const {
+    _id,
+    image,
+    title,
+    description,
+    originalPrice,
+    discountedPrice,
+    rating,
+    numberOfReviews,
+    inStock,
+  } = product;
+
+  const {
+    addToCart,
+    state: { cartItems },
+  } = useCart();
+
+  const {
+    state: { token },
+  } = useAuth();
+  const navigation = useNavigate();
+
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState("");
+
   return (
     <div className="card vertical-card">
+      {error && <p>{error}</p>}
+
       {!inStock && (
         <div class="overlay-container">
           <h2 class="overlay-text">Out of Stock</h2>
@@ -35,20 +63,35 @@ const VerticalCard = ({ product }) => {
         <span className="card-sub-heading text-gray">{description}</span>
         <div className="price">
           <span className="card-sub-heading text-md">
-            ₹ {new Intl.NumberFormat("en-IN").format(price)}
+            ₹ {new Intl.NumberFormat("en-IN").format(discountedPrice)}
           </span>
           <span className="text-line-through text-xs text-gray">
-            ₹ {new Intl.NumberFormat("en-IN").format(discountedPrice)}
+            ₹ {new Intl.NumberFormat("en-IN").format(originalPrice)}
           </span>
         </div>
       </div>
       <div className="card-cta-vertical">
-        <button className="btn btn-primary block-btn">
-          <span className="btn-icon">
-            <i className="fas fa-shopping-cart"></i>
-          </span>{" "}
-          Add to cart
-        </button>
+        {cartItems.find(item => item._id === _id) ? (
+          <Link to="/cart" className="btn btn-primary block-btn text-center">
+            <span className="btn-icon">
+              <i className="fas fa-shopping-cart"></i>
+            </span>
+            Go to cart
+          </Link>
+        ) : (
+          <button
+            className="btn btn-primary block-btn"
+            disabled={loader}
+            onClick={() =>
+              token ? addToCart(product, setLoader, setError) : navigation("/signin")
+            }
+          >
+            <span className="btn-icon">
+              <i className="fas fa-shopping-cart"></i>
+            </span>
+            Add to cart
+          </button>
+        )}
       </div>
     </div>
   );
