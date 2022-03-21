@@ -58,8 +58,10 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  const changeQuantity = async (type, productId) => {
+  const changeQuantity = async (type, productId, setLoader, setError) => {
     try {
+      setError("");
+      setLoader(true);
       const res = await axios.post(
         `/api/user/cart/${productId}`,
         {
@@ -76,9 +78,11 @@ const CartProvider = ({ children }) => {
 
       if (res.status === 200) {
         dispatch({ type: "SET_CART", payload: res.data.cart });
+        setLoader(false);
       }
     } catch (err) {
-      console.log(err);
+      setError(err.message);
+      setLoader(false);
     }
   };
 

@@ -1,11 +1,16 @@
 import { useCart } from "../../context";
+import { useState } from "react";
 import "./cartCard.css";
 
 const CartCard = ({ product }) => {
-  const { _id, title, description, price, discountedPrice, originalPrice, qty, image } = product;
+  const { _id, title, description, discountedPrice, originalPrice, qty, image } = product;
   const { changeQuantity, removeFromCart } = useCart();
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState("");
+
   return (
     <div className="card horizontal-card">
+      {error && <div>{error}</div>}
       <div className="card-image-container">
         <img className="responsive-img rounded-top-corner-img" src={image} alt={description} />
       </div>
@@ -23,13 +28,17 @@ const CartCard = ({ product }) => {
           <span>Quantity:</span>
           <button
             className="btn btn-outline"
-            disabled={qty === 1 ? true : false}
-            onClick={() => changeQuantity("decrement", _id)}
+            disabled={qty === 1 ? true : loader ? true : false}
+            onClick={() => changeQuantity("decrement", _id, setLoader, setError)}
           >
             -
           </button>
           <span className="quantity">{qty}</span>
-          <button className="btn btn-outline" onClick={() => changeQuantity("increment", _id)}>
+          <button
+            disabled={loader}
+            className="btn btn-outline"
+            onClick={() => changeQuantity("increment", _id, setLoader, setError)}
+          >
             +
           </button>
         </div>
