@@ -33,8 +33,10 @@ const CartProvider = ({ children }) => {
       })();
   }, [token]);
 
-  const addToCart = async product => {
+  const addToCart = async (product, setLoader, setError) => {
     try {
+      setError("");
+      setLoader(true);
       const res = await axios.post(
         "/api/user/cart",
         {
@@ -49,9 +51,10 @@ const CartProvider = ({ children }) => {
 
       if (res.status === 201) {
         dispatch({ type: "SET_CART", payload: res.data.cart });
+        setLoader(false);
       }
     } catch (err) {
-      console.log(err);
+      setError(err.response.data.errors);
     }
   };
 
