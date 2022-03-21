@@ -1,5 +1,6 @@
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth, useCart } from "../../context";
+import { useState } from "react";
 import "./verticalCard.css";
 const VerticalCard = ({ product }) => {
   const {
@@ -16,18 +17,21 @@ const VerticalCard = ({ product }) => {
 
   const {
     addToCart,
-    state: { cartItems, loader, error },
+    state: { cartItems },
   } = useCart();
-  console.log(loader, error);
 
   const {
     state: { token },
   } = useAuth();
   const navigation = useNavigate();
-  const location = useLocation();
+
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState("");
 
   return (
     <div className="card vertical-card">
+      {error && <p>{error}</p>}
+
       {!inStock && (
         <div class="overlay-container">
           <h2 class="overlay-text">Out of Stock</h2>
@@ -77,8 +81,10 @@ const VerticalCard = ({ product }) => {
         ) : (
           <button
             className="btn btn-primary block-btn"
-            onClick={() => (token ? addToCart(product) : navigation("/signin"))}
-            // disabled={loader}
+            disabled={loader}
+            onClick={() =>
+              token ? addToCart(product, setLoader, setError) : navigation("/signin")
+            }
           >
             <span className="btn-icon">
               <i className="fas fa-shopping-cart"></i>
