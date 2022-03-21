@@ -26,6 +26,11 @@
 .card-cta-vertical .btn {
   line-height: 1;
 }
+
 .btn-primary:disabled {
   background-color: var(--lighter-primary-color);
+}
+.btn-primary:disabled:hover {
+  background-color: var(--lighter-primary-color);
+  color: var(--secondary-color);
 }
