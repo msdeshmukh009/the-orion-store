@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useWishlist } from "../../context";
 import { AddToCartButton } from "../vertical-card/AddToCartButton";
 
@@ -5,6 +6,8 @@ const WishlistCard = ({ product }) => {
   const { _id, image, title, description, originalPrice, discountedPrice } = product;
 
   const { removeFromWishlist } = useWishlist();
+
+  const [isFetching, setIsFetching] = useState({ cart: false });
 
   return (
     <div className="card vertical-card">
@@ -29,7 +32,7 @@ const WishlistCard = ({ product }) => {
         </div>
       </div>
       <div className="card-cta-vertical">
-        <AddToCartButton product={product} />
+        <AddToCartButton product={product} setIsFetching={setIsFetching} isFetching={isFetching} />
       </div>
     </div>
   );

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useAuth, useCart } from "../../context";
 import { useNavigate, Link } from "react-router-dom";
 
-const AddToCartButton = ({ product }) => {
-  const [isFetching, setIsFetching] = useState(false);
+const AddToCartButton = ({ product, setIsFetching, isFetching }) => {
+  // const [isFetching, setIsFetching] = useState(false);
   const { addToCart } = useCart();
   const navigation = useNavigate();
 
@@ -25,16 +25,16 @@ const AddToCartButton = ({ product }) => {
   ) : (
     <button
       className="btn btn-primary block-btn"
-      disabled={isFetching ? true : false}
+      disabled={isFetching.cart ? true : false}
       onClick={() => (token ? addToCart(product, setIsFetching) : navigation("/signin"))}
     >
-      {!isFetching && (
+      {!isFetching.cart && (
         <span className="btn-icon">
           <i className="fas fa-shopping-cart"></i>
         </span>
       )}
 
-      {isFetching ? (
+      {isFetching.cart ? (
         <img
           className="responsive-img add-to-cart-loader"
           src="/assets/Spin-1s-150px-sec.svg"

@@ -40,7 +40,7 @@ const WishlistProvider = ({ children }) => {
 
   const addToWishlist = async (product, setIsFetching) => {
     try {
-      setIsFetching(true);
+      setIsFetching(prevState => ({ ...prevState, wishlist: true }));
       const res = await axios.post(
         "/api/user/wishlist",
         {
@@ -55,11 +55,11 @@ const WishlistProvider = ({ children }) => {
 
       if (res.status === 201) {
         dispatch({ type: "SET_WISHLIST", payload: res.data.wishlist });
-        setIsFetching(false);
+        setIsFetching(prevState => ({ ...prevState, wishlist: false }));
       }
     } catch (err) {
       console.log(err.message);
-      setIsFetching(false);
+      setIsFetching(prevState => ({ ...prevState, wishlist: false }));
     }
   };
 

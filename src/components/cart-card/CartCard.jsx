@@ -7,7 +7,7 @@ const CartCard = ({ product }) => {
 
   const { removeFromCart, moveItemFromCartToWishlist } = useCart();
 
-  const [isFetching, setIsFetching] = useState(false);
+  const [isFetching, setIsFetching] = useState({ wishlist: false, counter: false });
 
   return (
     <div className="card horizontal-card">
@@ -29,13 +29,13 @@ const CartCard = ({ product }) => {
           </div>
         </div>
 
-        <CounterButtons product={product} />
+        <CounterButtons product={product} setIsFetching={setIsFetching} isFetching={isFetching} />
 
         <div className="card-call-to-action-horizontal">
           <button
             className="btn btn-outline-primary block-btn"
             onClick={() => moveItemFromCartToWishlist(product, setIsFetching)}
-            disabled={isFetching ? true : false}
+            disabled={isFetching.wishlist}
           >
             Move to wishlist
           </button>

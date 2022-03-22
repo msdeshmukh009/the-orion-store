@@ -15,11 +15,7 @@ const HorizontalCard = ({ product }) => {
     image,
   } = product;
 
-  const {
-    state: { token },
-  } = useAuth();
-
-  const [isFetching, setIsFetching] = useState(false);
+  const [isFetching, setIsFetching] = useState({ cart: false, wishlist: false });
 
   return (
     <div className="card horizontal-card">
@@ -44,8 +40,12 @@ const HorizontalCard = ({ product }) => {
         </div>
 
         <div className="card-call-to-action-horizontal">
-          <AddToCartButton product={product} />
-          <MoveToWishlist product={product} />
+          <AddToCartButton
+            product={product}
+            setIsFetching={setIsFetching}
+            isFetching={isFetching}
+          />
+          <MoveToWishlist product={product} setIsFetching={setIsFetching} isFetching={isFetching} />
         </div>
       </div>
     </div>

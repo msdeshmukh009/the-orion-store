@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useAuth, useWishlist } from "../../context";
 import { useNavigate } from "react-router-dom";
 
-const AddToWishlistButton = ({ product }) => {
-  const [isFetching, setIsFetching] = useState(false);
+const AddToWishlistButton = ({ product, setIsFetching, isFetching }) => {
+  // const [isFetching, setIsFetching] = useState(false);
   const { addToWishlist, removeFromWishlist } = useWishlist();
   const navigation = useNavigate();
 
@@ -20,7 +20,7 @@ const AddToWishlistButton = ({ product }) => {
   return (
     <button
       className="card-wishlist-btn"
-      disabled={isFetching ? true : false}
+      disabled={isFetching.wishlist}
       onClick={() =>
         token
           ? !itemExistInWishlist

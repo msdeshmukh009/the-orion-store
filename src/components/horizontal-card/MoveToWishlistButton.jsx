@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useWishlist } from "../../context";
 
-const MoveToWishlist = ({ product }) => {
-  const [isFetching, setIsFetching] = useState(false);
+const MoveToWishlist = ({ product, setIsFetching, isFetching }) => {
   const navigation = useNavigate();
   const {
     state: { token },
@@ -22,7 +21,7 @@ const MoveToWishlist = ({ product }) => {
     </Link>
   ) : (
     <button
-      disabled={isFetching}
+      disabled={isFetching.wishlist}
       className="btn btn-outline-primary block-btn"
       onClick={() => (token ? addToWishlist(product, setIsFetching) : navigation("/signin"))}
     >

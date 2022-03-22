@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useCart } from "../../context";
 
-const CounterButtons = ({ product }) => {
-  const [isFetching, setIsFetching] = useState(false);
+const CounterButtons = ({ product, setIsFetching, isFetching }) => {
   const { changeQuantity } = useCart();
 
   return (
@@ -10,14 +9,14 @@ const CounterButtons = ({ product }) => {
       <span>Quantity:</span>
       <button
         className="btn btn-outline"
-        disabled={product.qty === 1 ? true : isFetching ? true : false}
+        disabled={product.qty === 1 ? true : isFetching.counter ? true : false}
         onClick={() => changeQuantity("decrement", product._id, setIsFetching)}
       >
         -
       </button>
       <span className="quantity">{product.qty}</span>
       <button
-        disabled={isFetching}
+        disabled={isFetching.counter}
         className="btn btn-outline"
         onClick={() => changeQuantity("increment", product._id, setIsFetching)}
       >

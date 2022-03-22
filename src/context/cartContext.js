@@ -41,7 +41,7 @@ const CartProvider = ({ children }) => {
 
   const addToCart = async (product, setIsFetching) => {
     try {
-      setIsFetching(true);
+      setIsFetching(prevState => ({ ...prevState, cart: true }));
       const res = await axios.post(
         "/api/user/cart",
         {
@@ -56,17 +56,17 @@ const CartProvider = ({ children }) => {
 
       if (res.status === 201) {
         dispatch({ type: "SET_CART", payload: res.data.cart });
-        setIsFetching(false);
+        setIsFetching(prevState => ({ ...prevState, cart: false }));
       }
     } catch (err) {
       console.log(err.message);
-      setIsFetching(false);
+      setIsFetching(prevState => ({ ...prevState, cart: false }));
     }
   };
 
   const changeQuantity = async (type, productId, setIsFetching) => {
     try {
-      setIsFetching(true);
+      setIsFetching(prevState => ({ ...prevState, counter: true }));
       const res = await axios.post(
         `/api/user/cart/${productId}`,
         {
@@ -83,11 +83,11 @@ const CartProvider = ({ children }) => {
 
       if (res.status === 200) {
         dispatch({ type: "SET_CART", payload: res.data.cart });
-        setIsFetching(false);
+        setIsFetching(prevState => ({ ...prevState, counter: false }));
       }
     } catch (err) {
       console.log(err.message);
-      setIsFetching(false);
+      setIsFetching(prevState => ({ ...prevState, counter: false }));
     }
   };
 
