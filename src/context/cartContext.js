@@ -2,6 +2,7 @@ import axios from "axios";
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { cartReducer } from "../reducer";
 import { useAuth } from "./authContext";
+import { useWishlist } from "./wishlistContext";
 
 const cartContext = createContext();
 
@@ -14,6 +15,11 @@ const CartProvider = ({ children }) => {
   const {
     state: { token },
   } = useAuth();
+
+  const {
+    state: { wishedItems },
+    addToWishlist,
+  } = useWishlist();
 
   useEffect(() => {
     token &&
@@ -33,10 +39,9 @@ const CartProvider = ({ children }) => {
       })();
   }, [token]);
 
-  const addToCart = async (product, setLoader, setError) => {
+  const addToCart = async (product, setIsFetching) => {
     try {
-      setError("");
-      setLoader(true);
+      setIsFetching(true);
       const res = await axios.post(
         "/api/user/cart",
         {
@@ -51,17 +56,17 @@ const CartProvider = ({ children }) => {
 
       if (res.status === 201) {
         dispatch({ type: "SET_CART", payload: res.data.cart });
-        setLoader(false);
+        setIsFetching(false);
       }
     } catch (err) {
-      setError(err.response.data.errors);
+      console.log(err.message);
+      setIsFetching(false);
     }
   };
 
-  const changeQuantity = async (type, productId, setLoader, setError) => {
+  const changeQuantity = async (type, productId, setIsFetching) => {
     try {
-      setError("");
-      setLoader(true);
+      setIsFetching(true);
       const res = await axios.post(
         `/api/user/cart/${productId}`,
         {
@@ -78,11 +83,11 @@ const CartProvider = ({ children }) => {
 
       if (res.status === 200) {
         dispatch({ type: "SET_CART", payload: res.data.cart });
-        setLoader(false);
+        setIsFetching(false);
       }
     } catch (err) {
-      setError(err.message);
-      setLoader(false);
+      console.log(err.message);
+      setIsFetching(false);
     }
   };
 
@@ -105,8 +110,25 @@ const CartProvider = ({ children }) => {
     }
   };
 
+  const moveItemFromCartToWishlist = (product, setIsFetching) => {
+    wishedItems.find(item => item._id === product._id)
+      ? null
+      : addToWishlist(product, setIsFetching);
+
+    removeFromCart(product._id);
+  };
+
   return (
-    <cartContext.Provider value={{ state, dispatch, addToCart, changeQuantity, removeFromCart }}>
+    <cartContext.Provider
+      value={{
+        state,
+        dispatch,
+        addToCart,
+        changeQuantity,
+        removeFromCart,
+        moveItemFromCartToWishlist,
+      }}
+    >
       {children}
     </cartContext.Provider>
   );
