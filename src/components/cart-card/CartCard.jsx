@@ -1,7 +1,7 @@
 import { useCart, useWishlist } from "../../context";
 import { useState, useEffect } from "react";
 import "./cartCard.css";
-import { CounterButtons } from "./ConterButtons";
+import { CounterButtons } from "./CounterButtons";
 const CartCard = ({ product }) => {
   const { _id, title, description, discountedPrice, originalPrice, image } = product;
 
