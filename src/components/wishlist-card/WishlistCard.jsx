@@ -40,7 +40,7 @@ const WishlistCard = ({ product }) => {
           />
         </div>
       ) : (
-        <h3 className="text-center">Out of stock</h3>
+        <button className="btn">Out of stock</button>
       )}
     </div>
   );
