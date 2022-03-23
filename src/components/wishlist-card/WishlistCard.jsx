@@ -3,7 +3,7 @@ import { useWishlist } from "../../context";
 import { AddToCartButton } from "../vertical-card/AddToCartButton";
 
 const WishlistCard = ({ product }) => {
-  const { _id, image, title, description, originalPrice, discountedPrice } = product;
+  const { _id, image, title, description, originalPrice, discountedPrice, inStock } = product;
 
   const { removeFromWishlist } = useWishlist();
 
@@ -31,9 +31,17 @@ const WishlistCard = ({ product }) => {
           </span>
         </div>
       </div>
-      <div className="card-cta-vertical">
-        <AddToCartButton product={product} setIsFetching={setIsFetching} isFetching={isFetching} />
-      </div>
+      {inStock ? (
+        <div className="card-cta-vertical">
+          <AddToCartButton
+            product={product}
+            setIsFetching={setIsFetching}
+            isFetching={isFetching}
+          />
+        </div>
+      ) : (
+        <h3 className="text-center">Out of stock</h3>
+      )}
     </div>
   );
 };
