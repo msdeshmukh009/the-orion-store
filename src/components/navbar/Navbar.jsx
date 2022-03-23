@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
-import { useAuth, useCart } from "../../context";
+import { useAuth, useCart, useWishlist } from "../../context";
 import "./navbar.css";
 const Navbar = () => {
   const {
     state: { token },
     logout,
   } = useAuth();
+
   const {
     state: { cartItems },
   } = useCart();
+
+  const {
+    state: { wishedItems },
+  } = useWishlist();
+
   return (
     <nav className="nav">
       <header className="nav-header flex-total-center">
@@ -55,9 +61,13 @@ const Navbar = () => {
             <span className="badge-container">
               <i className="fas fa-heart"></i>
               <span
-                className={token ? "status-badge number-badge flex-total-center" : "display-none"}
+                className={
+                  token && wishedItems.length > 0
+                    ? "status-badge number-badge flex-total-center"
+                    : "display-none"
+                }
               >
-                0
+                {wishedItems.length}
               </span>
             </span>
           </Link>

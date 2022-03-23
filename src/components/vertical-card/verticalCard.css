@@ -26,11 +26,12 @@
 .card-cta-vertical .btn {
   line-height: 1;
 }
-
-.btn-primary:disabled {
-  background-color: var(--lighter-primary-color);
+.add-to-cart-loader {
+  height: 100%;
 }
-.btn-primary:disabled:hover {
-  background-color: var(--lighter-primary-color);
-  color: var(--secondary-color);
+.vertical-card .btn-primary {
+  height: 2rem;
+}
+.card-wishlist-btn {
+  opacity: 1;
 }

@@ -1,6 +1,8 @@
 import { useCart, useAuth } from "../../context";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { AddToCartButton } from "../vertical-card/AddToCartButton";
+import { MoveToWishlist } from "./MoveToWishlistButton";
+import "./horizontalCard.css";
 
 const HorizontalCard = ({ product }) => {
   const {
@@ -13,22 +15,10 @@ const HorizontalCard = ({ product }) => {
     image,
   } = product;
 
-  const {
-    state: { token },
-  } = useAuth();
-
-  const {
-    addToCart,
-    state: { cartItems },
-  } = useCart();
-
-  const [loader, setLoader] = useState(false);
-  const [error, setError] = useState("");
-  const navigation = useNavigate();
+  const [isFetching, setIsFetching] = useState({ cart: false, wishlist: false });
 
   return (
     <div className="card horizontal-card">
-      {error && <div>{error}</div>}
       <span className="card-badge">New</span>
       <div className="card-image-container">
         <img className="responsive-img rounded-top-corner-img" src={image} alt={description} />
@@ -50,28 +40,12 @@ const HorizontalCard = ({ product }) => {
         </div>
 
         <div className="card-call-to-action-horizontal">
-          {cartItems.find(item => item._id === _id) ? (
-            <Link to="/cart" className="btn btn-primary block-btn text-center">
-              <span className="btn-icon">
-                <i className="fas fa-shopping-cart"></i>
-              </span>
-              Go to cart
-            </Link>
-          ) : (
-            <button
-              className="btn btn-primary block-btn"
-              disabled={loader}
-              onClick={() =>
-                token ? addToCart(product, setLoader, setError) : navigation("/signin")
-              }
-            >
-              <span className="btn-icon">
-                <i className="fas fa-shopping-cart"></i>
-              </span>
-              Add to cart
-            </button>
-          )}
-          <button className="btn btn-outline-primary block-btn">Move to wishlist</button>
+          <AddToCartButton
+            product={product}
+            setIsFetching={setIsFetching}
+            isFetching={isFetching}
+          />
+          <MoveToWishlist product={product} setIsFetching={setIsFetching} isFetching={isFetching} />
         </div>
       </div>
     </div>
