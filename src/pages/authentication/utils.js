@@ -2,7 +2,7 @@ const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 var passwordFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
 
 const validFormChecker = userInput => {
-  const { name, lastName, email, password } = userInput;
+  const { name, lastName, email, password, confirmPassword, agreement } = userInput;
   const err = {};
   if (!name) {
     err.name = "Enter valid name";
@@ -18,11 +18,18 @@ const validFormChecker = userInput => {
 
   if (!password) {
     err.password = "Enter valid password";
-  }
-  if (!password.match(passwordFormat)) {
+  } else if (!password.match(passwordFormat)) {
     err.password = "Too weak!!";
   }
+  if (!confirmPassword) {
+    err.confirmPassword = "Confirm the password";
+  } else if (confirmPassword !== password) {
+    err.confirmPassword = "Password should match";
+  }
 
+  if (agreement === "not agree") {
+    err.agreement = "Please check this box if you want to proceed";
+  }
   return err;
 };
 const validLoginFormChecker = userInput => {
