@@ -1,8 +1,20 @@
 import "./input.css";
 
-const Input = ({ type, placeholder, label, required, defaultValue, showError, helperText, disabled, changeHandler, name }) => {
+const Input = ({
+  type,
+  placeholder,
+  label,
+  required,
+  defaultValue,
+  showError,
+  helperText,
+  disabled,
+  changeHandler,
+  name,
+}) => {
   return (
     <div className="input-grp">
+      <label className={required ? "form-label form-label-required" : "form-label "}>{label}</label>
       <input
         className="form-field"
         type={type || "text"}
@@ -13,7 +25,6 @@ const Input = ({ type, placeholder, label, required, defaultValue, showError, he
         onChange={changeHandler}
         name={name}
       />
-      <label className={required ? "form-label form-label-required" : "form-label "}>{label}</label>
       <div className="txt-message text-danger">{showError && helperText}</div>
     </div>
   );
