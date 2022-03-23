@@ -4,6 +4,7 @@ import { Input, Loading, OverlayContainer } from "../../components";
 import { useAuth } from "../../context";
 import "./authentication.css";
 import { validLoginFormChecker } from "./utils";
+import { PasswordInput } from "../../components/input/PasswordInput";
 
 const Signin = () => {
   const [loader, setLoader] = useState(false);
@@ -68,8 +69,7 @@ const Signin = () => {
           helperText={formErrors.email}
         />
 
-        <Input
-          type="password"
+        <PasswordInput
           required={true}
           label="Password"
           name="password"
