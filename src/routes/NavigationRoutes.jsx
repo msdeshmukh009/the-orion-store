@@ -17,10 +17,15 @@ const NavigationRoutes = () => {
       <Route path="/wishlist" element={<PrivateRoute element={Wishlist} />} />
       <Route path="/mockman" element={<Mockman />} />
 
-      {!token && (
+      {!token ? (
         <>
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
+        </>
+      ) : (
+        <>
+          <Route path="/signin" element={<Navigate replace to="/" />} />
+          <Route path="/signup" element={<Navigate replace to="/" />} />
         </>
       )}
 
