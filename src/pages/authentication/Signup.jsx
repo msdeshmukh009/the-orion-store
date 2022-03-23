@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { Input, Loading, OverlayContainer } from "../../components";
 import "./authentication.css";
 import { useAuth } from "../../context";
-import { validFormChecker, changeHandler } from "./utils";
+import { validFormChecker } from "./utils";
+import { PasswordInput } from "../../components/input/PasswordInput";
 
 const Signup = () => {
   const { signup } = useAuth();
@@ -16,6 +17,8 @@ const Signup = () => {
     lastName: "",
     email: "",
     password: "",
+    confirmPassword: "",
+    agreement: "not agree",
   });
 
   const changeHandler = e => {
@@ -29,9 +32,12 @@ const Signup = () => {
 
   const formSubmitHandler = e => {
     e.preventDefault();
+
+    const { name, lastName, email, password } = userInput;
+
     setSubmitted(true);
     if (!(Object.values(formErrors).length > 0)) {
-      signup(userInput, setLoader, setError);
+      signup({ name, lastName, email, password }, setLoader, setError);
       setFormErrors({});
     }
   };
@@ -46,7 +52,6 @@ const Signup = () => {
         </OverlayContainer>
 
         {error && <p className="text-danger text-center">{error}</p>}
-
         <Input
           type="text"
           defaultValue={userInput.name}
@@ -77,20 +82,45 @@ const Signup = () => {
           required={true}
           changeHandler={changeHandler}
         />
-        <Input
-          type="password"
+        <PasswordInput
           defaultValue={userInput.password}
           name="password"
           label="Password"
           helperText={formErrors.password}
-          showError={submitted}
+          showError={userInput.password.length > 2 || submitted}
+          required={true}
+          changeHandler={changeHandler}
+        />
+
+        <Input
+          type="password"
+          defaultValue={userInput.confirmPassword}
+          name="confirmPassword"
+          label="Confirm Password"
+          helperText={formErrors.confirmPassword}
+          showError={userInput.confirmPassword.length > 2 || submitted}
           required={true}
           changeHandler={changeHandler}
         />
 
         <div className="options">
-          <input type="checkbox" name="agreement" id="agreement" />
-          <label htmlFor="agreement">I agree to all Terms & Conditions</label>
+          <label htmlFor="agreement">
+            <input
+              type="checkbox"
+              name="agreement"
+              onChange={changeHandler}
+              value={userInput.agreement === "agree" ? "not agree" : "agree"}
+              checked={userInput.agreement === "agree"}
+              id="agreement"
+            />
+            I agree to all Terms & Conditions
+          </label>
+
+          {submitted && (
+            <p className="text-danger text-xs text-center option-helper-txt">
+              {formErrors.agreement}
+            </p>
+          )}
         </div>
 
         <button className="btn btn-primary btn-submit" onClick={e => formSubmitHandler(e)}>
