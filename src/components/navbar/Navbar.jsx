@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuth, useCart, useWishlist } from "../../context";
 import "./navbar.css";
-const Navbar = () => {
+const Navbar = ({ navAside, setNavAside }) => {
   const {
     state: { token },
     logout,
@@ -19,7 +19,9 @@ const Navbar = () => {
     <nav className="nav">
       <header className="nav-header flex-total-center">
         <div className="burger-menu">
-          <i className="fas fa-bars"></i>
+          <button className="btn btn-outline">
+            <i className="fas fa-bars" onClick={() => setNavAside(prevState => !prevState)}></i>
+          </button>
         </div>
         <Link to="/" className="nav-link">
           <h2 className="nav-heading">Orion</h2>
@@ -34,7 +36,7 @@ const Navbar = () => {
       </div>
 
       <ul className="inline-style-list no-style-list nav-list flex-total-center ">
-        <li>
+        <li className="nav-list-web-item">
           <Link className="link-btn" to="/products">
             Shop now
           </Link>
@@ -74,13 +76,13 @@ const Navbar = () => {
         </li>
 
         {token ? (
-          <li>
+          <li className="nav-list-web-item">
             <button className="btn btn-outline" onClick={() => logout()}>
               <i className="fas fa-sign-out"></i>
             </button>
           </li>
         ) : (
-          <li>
+          <li className="nav-list-web-item">
             <Link to="/signin" className="anchor-tag-badge-container ">
               <i className="fas fa-user "></i>
             </Link>
