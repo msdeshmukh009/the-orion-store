@@ -24,6 +24,9 @@
   overflow: scroll;
   z-index: 2;
 }
+.filter-title-mobile {
+  display: none;
+}
 .filters label {
   cursor: pointer;
 }
@@ -55,7 +58,17 @@
   margin-bottom: var(--md-space);
 }
 .filter-button {
-  border-radius: 20px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  background-color: var(--secondary-color);
+}
+.filter-button:hover {
+  opacity: 1;
+  color: var(--text-color);
+  background-color: var(--secondary-color);
 }
 .divider-hr {
   background-color: transparent;
@@ -106,21 +119,27 @@
       "main-products main-products main-products main-products main-products main-products"
       "footer footer footer footer footer footer";
   }
+  .filter-title-mobile {
+    display: block;
+  }
+  .filter-close-btn {
+    display: none;
+  }
   .filters {
     position: fixed;
-    left: -100rem;
+    top: unset;
+    bottom: -100rem;
   }
   .show-filters {
-    left: 0;
+    bottom: 0;
     z-index: 2;
     height: 100vh;
-    width: 70%;
+    width: 100%;
     background-color: var(--background-color);
     box-shadow: var(--sidebar-shadow);
     transition: all 0.5s ease-in-out;
   }
   .filter-btn,
-  .filter-close-btn,
   .filter-button-div {
     display: block;
   }

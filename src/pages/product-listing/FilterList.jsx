@@ -1,22 +1,16 @@
 import { MultiRangeSlider } from "../../components";
 import { useCategory, useFilter, useProducts } from "../../context";
 import "./productListing.css";
-const FilterList = ({ filterStyles, setFilterStyles }) => {
+const FilterList = ({ showFilters, setShowFilters }) => {
   const { state, dispatch } = useFilter();
   const { priceRange } = useProducts();
   const { categories } = useCategory();
   const categoryNames = categories.map(category => category.categoryName);
 
   return (
-    <section className={filterStyles} id="filters">
-      <button className="filter-close-btn" onClick={() => setFilterStyles("filters")}>
-        <span className="btn-icon">
-          <i className="fas fa-times"></i>
-        </span>
-      </button>
-
+    <section className={`filters ${showFilters ? "show-filters" : ""}`} id="filters">
       <div className="filter-title">
-        <h3>Filters</h3>
+        <h3 className="filter-title-web">Filters</h3>
         <button
           className="link-btn"
           onClick={() =>

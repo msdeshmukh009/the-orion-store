@@ -1,3 +1,6 @@
 .children-container {
   min-height: calc(100vh - 200px);
 }
+.floating-up-arrow-btn {
+  bottom: 40px;
+}

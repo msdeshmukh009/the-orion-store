@@ -3,13 +3,13 @@ import { FilterList } from "./FilterList";
 import { useState } from "react";
 
 const ProductListing = () => {
-  const [filterStyles, setFilterStyles] = useState("filters");
+  const [showFilters, setShowFilters] = useState(false);
 
   return (
     <>
       <div className="grid-container">
-        <FilterList filterStyles={filterStyles} setFilterStyles={setFilterStyles} />
-        <ProductsGrid setFilterStyles={setFilterStyles} />
+        <FilterList showFilters={showFilters} setShowFilters={setShowFilters} />
+        <ProductsGrid showFilters={showFilters} setShowFilters={setShowFilters} />
       </div>
     </>
   );
