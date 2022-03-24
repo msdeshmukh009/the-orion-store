@@ -1,6 +1,9 @@
 import { createContext } from "react";
 import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useFilter } from "./filterContext";
 import axios from "axios";
+import { useProducts } from "./productsContext";
 
 const categoryContext = createContext();
 
@@ -10,6 +13,9 @@ const CategoryProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const { dispatch: filterDispatch } = useFilter();
+  const { priceRange } = useProducts();
 
   useEffect(() => {
     (async () => {
@@ -27,7 +33,18 @@ const CategoryProvider = ({ children }) => {
       }
     })();
   }, []);
-  return <categoryContext.Provider value={{ categories, loader, error }}>{children}</categoryContext.Provider>;
+
+  const navigateToCategory = category => {
+    filterDispatch({ type: "CLEAR", payload: { min: priceRange.min, max: priceRange.max } });
+    filterDispatch({ type: "ADD_CATEGORY", payload: category });
+    navigate("/products");
+  };
+
+  return (
+    <categoryContext.Provider value={{ categories, loader, error, navigateToCategory }}>
+      {children}
+    </categoryContext.Provider>
+  );
 };
 
 export { CategoryProvider, useCategory };
