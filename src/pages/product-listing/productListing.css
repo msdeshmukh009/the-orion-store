@@ -24,6 +24,9 @@
   overflow: scroll;
   z-index: 2;
 }
+.filters label {
+  cursor: pointer;
+}
 .filter-list {
   gap: var(--lg-space);
 }
@@ -43,6 +46,9 @@
   justify-content: space-between;
   padding: var(--lg-space);
   flex-wrap: wrap;
+}
+.filter-title button {
+  cursor: pointer;
 }
 .filter-button-div {
   display: none;
