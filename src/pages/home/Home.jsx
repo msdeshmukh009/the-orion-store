@@ -30,7 +30,7 @@ const Home = () => {
       {/* banner-end */}
 
       {/* category-section */}
-      <section className="text-center" id="categories">
+      <section className="text-center category-section" id="categories">
         <h1 className="section-heading">Categories</h1>
         <hr className="title-hr" />
 
