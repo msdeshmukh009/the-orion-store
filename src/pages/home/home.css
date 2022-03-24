@@ -61,12 +61,16 @@
   max-width: 1500px;
   margin: auto;
 }
+.category-section {
+  margin-top: var(--xxl-space);
+}
 /*******/
 
 /*******/
 /*** featured-product-section ***/
 .featured-product-section {
   min-height: 400px;
+  margin-top: var(--xxl-space);
 }
 .featured-products {
   width: 90%;
