@@ -1,7 +1,6 @@
-import "./input.css";
+import { useState } from "react";
 
-const Input = ({
-  type,
+const PasswordInput = ({
   placeholder,
   label,
   required,
@@ -12,12 +11,19 @@ const Input = ({
   changeHandler,
   name,
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePassword = e => {
+    e.preventDefault();
+    setShowPassword(prevState => !prevState);
+  };
+
   return (
     <div className="input-grp">
       <label className={required ? "form-label form-label-required" : "form-label "}>{label}</label>
       <input
         className="form-field"
-        type={type || "text"}
+        type={showPassword ? "text" : "password"}
         placeholder={placeholder}
         value={defaultValue}
         required={required}
@@ -25,9 +31,13 @@ const Input = ({
         onChange={changeHandler}
         name={name}
       />
+      <button onClick={togglePassword} className="password-toggle-button btn btn-outline">
+        {showPassword ? <i className="fas fa-eye"></i> : <i className="fas fa-eye-slash"></i>}
+      </button>
+
       <div className="txt-message text-danger">{showError && helperText}</div>
     </div>
   );
 };
 
-export { Input };
+export { PasswordInput };

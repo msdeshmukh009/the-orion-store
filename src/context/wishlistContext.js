@@ -17,26 +17,23 @@ const WishlistProvider = ({ children }) => {
   } = useAuth();
 
   useEffect(() => {
-    let isApiSubscribed = true;
-    token &&
-      (async () => {
-        try {
-          const res = await axios.get("/api/user/wishlist", {
-            headers: {
-              authorization: token,
-            },
-          });
-          if (res.status === 200 && isApiSubscribed) {
-            dispatch({ type: "SET_WISHLIST", payload: res.data.wishlist });
+    token
+      ? (async () => {
+          try {
+            const res = await axios.get("/api/user/wishlist", {
+              headers: {
+                authorization: token,
+              },
+            });
+            if (res.status === 200) {
+              dispatch({ type: "SET_WISHLIST", payload: res.data.wishlist });
+            }
+          } catch (err) {
+            console.log(err);
           }
-        } catch (err) {
-          console.log(err);
-        }
-      })();
-    return () => {
-      isApiSubscribed = false;
-    };
-  }, []);
+        })()
+      : dispatch({ type: "SET_WISHLIST", payload: [] });
+  }, [token]);
 
   const addToWishlist = async (product, setIsFetching) => {
     try {

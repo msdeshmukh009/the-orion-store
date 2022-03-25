@@ -22,21 +22,22 @@ const CartProvider = ({ children }) => {
   } = useWishlist();
 
   useEffect(() => {
-    token &&
-      (async () => {
-        try {
-          const res = await axios.get("/api/user/cart", {
-            headers: {
-              authorization: token,
-            },
-          });
-          if (res.status === 200) {
-            dispatch({ type: "SET_CART", payload: res.data.cart });
+    token
+      ? (async () => {
+          try {
+            const res = await axios.get("/api/user/cart", {
+              headers: {
+                authorization: token,
+              },
+            });
+            if (res.status === 200) {
+              dispatch({ type: "SET_CART", payload: res.data.cart });
+            }
+          } catch (err) {
+            console.log(err);
           }
-        } catch (err) {
-          console.log(err);
-        }
-      })();
+        })()
+      : dispatch({ type: "SET_CART", payload: [] });
   }, [token]);
 
   const addToCart = async (product, setIsFetching) => {

@@ -23,11 +23,11 @@ ReactDOM.render(
         <WishlistProvider>
           <CartProvider>
             <ProductsProvider>
-              <CategoryProvider>
-                <FilterProvider>
+              <FilterProvider>
+                <CategoryProvider>
                   <App />
-                </FilterProvider>
-              </CategoryProvider>
+                </CategoryProvider>
+              </FilterProvider>
             </ProductsProvider>
           </CartProvider>
         </WishlistProvider>

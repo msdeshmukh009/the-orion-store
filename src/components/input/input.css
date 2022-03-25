@@ -1,25 +1,18 @@
-.input-grp {
+.form-container .form-grp .input-grp {
   position: relative;
-  margin-bottom: var(--lg-space);
+  margin: var(--sm-space) 0;
 }
 .txt-message {
   position: absolute;
+  right: 0;
 }
-.form-label {
-  font-size: 0.8rem;
+.password-toggle-button.btn {
+  box-shadow: none;
   position: absolute;
-  top: 8px;
-  left: 15px;
-  background: var(--background-color);
-  transition: all 0.3s ease;
+  bottom: 1px;
+  right: 0;
 }
-.input-grp input:focus + label,
-.input-grp input:valid + label,
-.input-grp input:placeholder-shown + label {
-  font-size: 12px;
-  top: -8px;
-}
-
-.input-grp input:focus + label {
-  color: var(--primary-color);
+.options {
+  position: relative;
+  margin: var(--xl-space) 0 var(--sm-space);
 }
