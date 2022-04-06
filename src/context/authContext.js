@@ -1,15 +1,19 @@
-import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { authReducer } from "../reducer";
+import { authActions } from "../reducer/constant";
+import { signupService, loginService } from "../services";
+
+const { LOGIN_USER, LOGOUT_USER } = authActions;
 
 const authContext = createContext();
 
 const useAuth = () => useContext(authContext);
 
 const initialState = {
-  userName: JSON.parse(localStorage.getItem("jwt"))?.userName || "",
-  token: JSON.parse(localStorage.getItem("jwt"))?.token || "",
+  userName: JSON.parse(localStorage.getItem("jwt-orion-store"))?.userName || "",
+  token: JSON.parse(localStorage.getItem("jwt-orion-store"))?.token || "",
 };
 
 const AuthProvider = ({ children }) => {
@@ -20,21 +24,26 @@ const AuthProvider = ({ children }) => {
     try {
       setError("");
       setLoader(true);
-      const res = await axios.post("/api/auth/signup", userInput);
+      const res = await signupService(userInput);
 
       if (res.status === 201) {
         setLoader(false);
 
-        const { firstName } = res.data.createdUser;
-        const { encodedToken } = res.data;
+        const {
+          encodedToken,
+          createdUser: { firstName },
+        } = res.data;
 
-        localStorage.setItem("jwt", JSON.stringify({ userName: firstName, token: encodedToken }));
+        localStorage.setItem(
+          "jwt-orion-store",
+          JSON.stringify({ userName: firstName, token: encodedToken })
+        );
 
         dispatch({
-          type: "LOGIN_USER",
+          type: LOGIN_USER,
           payload: { userName: firstName, token: encodedToken },
         });
-
+        toast.success(`Hi! ${firstName}`, { icon: "👋" });
         navigate("/");
       }
     } catch (err) {
@@ -47,19 +56,26 @@ const AuthProvider = ({ children }) => {
     try {
       setError("");
       setLoader(false);
-      const res = await axios.post("/api/auth/login", userInput);
+      const res = await loginService(userInput);
+
       if (res.status === 200) {
         setLoader(false);
 
-        const { firstName } = res.data.foundUser;
-        const { encodedToken } = res.data;
-        localStorage.setItem("jwt", JSON.stringify({ userName: firstName, token: encodedToken }));
+        const {
+          encodedToken,
+          foundUser: { firstName },
+        } = res.data;
+
+        localStorage.setItem(
+          "jwt-orion-store",
+          JSON.stringify({ userName: firstName, token: encodedToken })
+        );
 
         dispatch({
-          type: "LOGIN_USER",
+          type: LOGIN_USER,
           payload: { userName: firstName, token: encodedToken },
         });
-
+        toast.success(`Hi! ${firstName}`, { icon: "👋" });
         navigate(from, { replace: true });
       }
     } catch (err) {
@@ -69,9 +85,10 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    dispatch({ type: "LOGOUT_USER" });
+    dispatch({ type: LOGOUT_USER });
     navigate("/");
-    localStorage.removeItem("jwt");
+    localStorage.removeItem("jwt-orion-store");
+    toast.success("User logout");
   };
 
   return (

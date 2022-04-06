@@ -1,6 +1,10 @@
+import "./productListing.css";
 import { MultiRangeSlider } from "../../components";
 import { useCategory, useFilter, useProducts } from "../../context";
-import "./productListing.css";
+import { filterActions } from "../../reducer/constant";
+
+const { SORT, TOGGLE_OUT_OF_STOCK, ADD_CATEGORY, SET_RATING, CLEAR } = filterActions;
+
 const FilterList = ({ showFilters, setShowFilters }) => {
   const { state, dispatch } = useFilter();
   const { priceRange } = useProducts();
@@ -14,7 +18,7 @@ const FilterList = ({ showFilters, setShowFilters }) => {
         <button
           className="link-btn"
           onClick={() =>
-            dispatch({ type: "CLEAR", payload: { min: priceRange.min, max: priceRange.max } })
+            dispatch({ type: CLEAR, payload: { min: priceRange.min, max: priceRange.max } })
           }
         >
           Clear
@@ -30,7 +34,7 @@ const FilterList = ({ showFilters, setShowFilters }) => {
               name="price"
               id="high-to-low"
               checked={state.sort === "high-to-low"}
-              onChange={() => dispatch({ type: "SORT", payload: "high-to-low" })}
+              onChange={() => dispatch({ type: SORT, payload: "high-to-low" })}
             />
             <label htmlFor="high-to-low">Price-high to low</label>
           </div>
@@ -40,7 +44,7 @@ const FilterList = ({ showFilters, setShowFilters }) => {
               name="price"
               id="low-to-high"
               checked={state.sort === "low-to-high"}
-              onChange={() => dispatch({ type: "SORT", payload: "low-to-high" })}
+              onChange={() => dispatch({ type: SORT, payload: "low-to-high" })}
             />
             <label htmlFor="low-to-high">Price-low to high</label>
           </div>
@@ -60,7 +64,7 @@ const FilterList = ({ showFilters, setShowFilters }) => {
               checked={
                 state.category.length === 0 || state.category.length === categoryNames.length
               }
-              onChange={() => dispatch({ type: "ADD_CATEGORY", payload: "all" })}
+              onChange={() => dispatch({ type: ADD_CATEGORY, payload: "all" })}
             />
             <label htmlFor="all">all</label>
           </div>
@@ -72,7 +76,7 @@ const FilterList = ({ showFilters, setShowFilters }) => {
                   <input
                     type="checkbox"
                     checked={state.category.includes(category)}
-                    onChange={() => dispatch({ type: "ADD_CATEGORY", payload: category })}
+                    onChange={() => dispatch({ type: ADD_CATEGORY, payload: category })}
                   />
                   {category}
                 </label>
@@ -90,7 +94,7 @@ const FilterList = ({ showFilters, setShowFilters }) => {
                   type="radio"
                   name="rating"
                   checked={state.rating === rating}
-                  onChange={() => dispatch({ type: "SET_RATING", payload: rating })}
+                  onChange={() => dispatch({ type: SET_RATING, payload: rating })}
                 />
                 {rating} stars and above
               </label>
@@ -106,7 +110,7 @@ const FilterList = ({ showFilters, setShowFilters }) => {
               name="include-out-of-stock"
               id="include-out-of-stock"
               checked={state.includeOutOfStock}
-              onChange={() => dispatch({ type: "TOGGLE_OUT_OF_STOCK" })}
+              onChange={() => dispatch({ type: TOGGLE_OUT_OF_STOCK })}
             />
             <label htmlFor="include-out-of-stock">Include out of stock</label>
           </div>

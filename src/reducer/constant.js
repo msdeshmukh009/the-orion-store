@@ -7,6 +7,7 @@ const filterActions = {
   SET_MIN: "SET_MIN",
   SET_MAX: "SET_MAX",
   CLEAR: "CLEAR",
+  APPLY_SEARCH_TERM: "APPLY_SEARCH_TERM",
 };
 
 const authActions = {
@@ -14,4 +15,15 @@ const authActions = {
   LOGOUT_USER: "LOGOUT_USER",
 };
 
-export { filterActions, authActions };
+const cartActions = {
+  INITIALIZE: "INITIALIZE",
+  SET_CART: "SET_CART",
+  SET_ERROR: "SET_ERROR",
+};
+const wishlistActions = {
+  INITIALIZE: "INITIALIZE",
+  SET_ERROR: "SET_ERROR",
+  SET_WISHLIST: "SET_WISHLIST",
+};
+
+export { filterActions, authActions, cartActions, wishlistActions };

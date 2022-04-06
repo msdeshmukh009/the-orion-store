@@ -1,1 +1,1 @@
-export { sortProducts, filterProducts, minMaxReduce } from "./filterMethods";
+export { sortProducts, filterProducts, minMaxReduce, handleSearch } from "./filterMethods";

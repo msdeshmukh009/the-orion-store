@@ -2,8 +2,9 @@ import { useCart, useWishlist } from "../../context";
 import { useState, useEffect } from "react";
 import "./cartCard.css";
 import { CounterButtons } from "./CounterButtons";
+import { Link } from "react-router-dom";
 const CartCard = ({ product }) => {
-  const { _id, title, description, discountedPrice, originalPrice, image } = product;
+  const { id, _id, title, description, discountedPrice, originalPrice, image } = product;
 
   const { removeFromCart, moveItemFromCartToWishlist } = useCart();
 
@@ -11,12 +12,12 @@ const CartCard = ({ product }) => {
 
   return (
     <div className="card horizontal-card">
-      <div className="card-image-container">
+      <Link to={`/products/details/${id}`} className="card-image-container">
         <img className="responsive-img rounded-top-corner-img" src={image} alt={description} />
-      </div>
+      </Link>
 
       <div className="horizontal-card-content">
-        <div className="card-info-container text-left">
+        <Link to={`/products/details/${id}`} className="card-info-container text-left">
           <span className="text-bold card-heading">{title}</span>
           <span className="card-sub-heading text-gray">{description}</span>
           <div className="price">
@@ -27,7 +28,7 @@ const CartCard = ({ product }) => {
               ₹ {new Intl.NumberFormat("en-IN").format(originalPrice)}
             </span>
           </div>
-        </div>
+        </Link>
 
         <CounterButtons product={product} setIsFetching={setIsFetching} isFetching={isFetching} />
 

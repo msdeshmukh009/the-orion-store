@@ -1,11 +1,10 @@
-import { useState } from "react";
 import { useAuth, useWishlist } from "../../context";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AddToWishlistButton = ({ product, setIsFetching, isFetching }) => {
-  // const [isFetching, setIsFetching] = useState(false);
   const { addToWishlist, removeFromWishlist } = useWishlist();
   const navigation = useNavigate();
+  const { pathname } = useLocation();
 
   const {
     state: { wishedItems },
@@ -19,7 +18,9 @@ const AddToWishlistButton = ({ product, setIsFetching, isFetching }) => {
 
   return (
     <button
-      className="card-wishlist-btn"
+      className={`card-wishlist-btn ${
+        pathname.includes("/products/") ? "position-unset btn btn-outline-primary" : ""
+      }`}
       disabled={isFetching.wishlist}
       onClick={() =>
         token
@@ -29,7 +30,18 @@ const AddToWishlistButton = ({ product, setIsFetching, isFetching }) => {
           : navigation("/signin")
       }
     >
-      <i className={itemExistInWishlist ? "fas fa-heart text-danger" : "fal fa-heart"}></i>
+      {pathname === "/wishlist" ? (
+        <i className="fas fa-times"></i>
+      ) : (
+        <span className="flex-total-center">
+          <i className={itemExistInWishlist ? "fas fa-heart text-danger" : "fal fa-heart"}></i>
+          {pathname.includes("/products/details/")
+            ? itemExistInWishlist
+              ? "Added in wishlist"
+              : "Add to wishlist"
+            : ""}
+        </span>
+      )}
     </button>
   );
 };

@@ -1,16 +1,27 @@
-import axios from "axios";
 import { createContext, useContext, useReducer, useEffect } from "react";
+import toast from "react-hot-toast";
 import { cartReducer } from "../reducer";
 import { useAuth } from "./authContext";
 import { useWishlist } from "./wishlistContext";
+import { cartActions } from "../reducer/constant";
+import {
+  getCartService,
+  addToCartService,
+  changeQuantityService,
+  removeFromCartService,
+} from "../services";
 
 const cartContext = createContext();
+
+const { INITIALIZE, SET_ERROR, SET_CART } = cartActions;
 
 const useCart = () => useContext(cartContext);
 
 const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, {
+    loading: false,
     cartItems: [],
+    error: "",
   });
   const {
     state: { token },
@@ -25,42 +36,32 @@ const CartProvider = ({ children }) => {
     token
       ? (async () => {
           try {
-            const res = await axios.get("/api/user/cart", {
-              headers: {
-                authorization: token,
-              },
-            });
+            dispatch({ type: INITIALIZE });
+
+            const res = await getCartService(token);
+
             if (res.status === 200) {
-              dispatch({ type: "SET_CART", payload: res.data.cart });
+              dispatch({ type: SET_CART, payload: res.data.cart });
             }
           } catch (err) {
-            console.log(err);
+            dispatch({ type: SET_ERROR, payload: err.response.data.error[0] });
           }
         })()
-      : dispatch({ type: "SET_CART", payload: [] });
+      : dispatch({ type: SET_CART, payload: [] });
   }, [token]);
 
   const addToCart = async (product, setIsFetching) => {
     try {
       setIsFetching(prevState => ({ ...prevState, cart: true }));
-      const res = await axios.post(
-        "/api/user/cart",
-        {
-          product,
-        },
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
+      const res = await addToCartService(token, product);
 
       if (res.status === 201) {
-        dispatch({ type: "SET_CART", payload: res.data.cart });
+        dispatch({ type: SET_CART, payload: res.data.cart });
         setIsFetching(prevState => ({ ...prevState, cart: false }));
+        toast.success("Product added to cart");
       }
     } catch (err) {
-      console.log(err.message);
+      toast.error("Something went wrong,Please try again");
       setIsFetching(prevState => ({ ...prevState, cart: false }));
     }
   };
@@ -68,52 +69,36 @@ const CartProvider = ({ children }) => {
   const changeQuantity = async (type, productId, setIsFetching) => {
     try {
       setIsFetching(prevState => ({ ...prevState, counter: true }));
-      const res = await axios.post(
-        `/api/user/cart/${productId}`,
-        {
-          action: {
-            type: type,
-          },
-        },
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
+      const res = await changeQuantityService(token, productId, type);
 
       if (res.status === 200) {
-        dispatch({ type: "SET_CART", payload: res.data.cart });
+        dispatch({ type: SET_CART, payload: res.data.cart });
         setIsFetching(prevState => ({ ...prevState, counter: false }));
+        toast.success("Product quantity updated");
       }
     } catch (err) {
-      console.log(err.message);
+      toast.error("Something went wrong,Please try again");
       setIsFetching(prevState => ({ ...prevState, counter: false }));
     }
   };
 
   const removeFromCart = async productId => {
     try {
-      const res = await axios.delete(
-        `/api/user/cart/${productId}`,
-
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
+      const res = await removeFromCartService(token, productId);
       if (res.status === 200) {
-        dispatch({ type: "SET_CART", payload: res.data.cart });
+        dispatch({ type: SET_CART, payload: res.data.cart });
+        toast.success("Product removed from cart");
       }
     } catch (err) {
-      console.log(err);
+      toast.error("Something went wrong,Please try again");
     }
   };
 
   const moveItemFromCartToWishlist = (product, setIsFetching) => {
     wishedItems.find(item => item._id === product._id)
-      ? null
+      ? toast(<span>Item already present in wishlist</span>, {
+          icon: "👌",
+        })
       : addToWishlist(product, setIsFetching);
 
     removeFromCart(product._id);

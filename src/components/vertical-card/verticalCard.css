@@ -14,6 +14,7 @@
   bottom: 10px;
   left: 10px;
   background-color: var(--secondary-color);
+  color: var(--text-color);
   padding: 3px;
   width: 60px;
   opacity: 0.9;
@@ -21,7 +22,6 @@
 }
 .card-image-container {
   position: relative;
-  z-index: -1;
 }
 .card-cta-vertical .btn {
   line-height: 1;
@@ -34,4 +34,15 @@
 }
 .card-wishlist-btn {
   opacity: 1;
+  z-index: 2;
+}
+.card-wishlist-btn .flex-total-center {
+  gap: var(--md-space);
+}
+.card-info-container {
+  color: var(--text-color);
+  text-decoration: none;
+}
+.position-unset {
+  position: unset;
 }

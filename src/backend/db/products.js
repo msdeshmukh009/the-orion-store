@@ -10,6 +10,8 @@ export const products = [
     _id: uuid(),
     title: "CognitiveSurplus",
     description: "Curiosity Rover 11 oz Ceramic Mug Lorem ipsum dolor sit amet.",
+    detailedDescription:
+      "This mug tips its hat to the Curiosity rover, which has been exploring Mars and sending back data since 2012. Let it inspire you to keep asking questions. Stay curious. This sturdy mug holds 11 ounces of caffeinated bliss. It's dishwasher and microwave safe. Each mug ships in a fancy recyclable & collectable Kraft box.",
     featuredProductDescription: "Astronomy Gifts, NASA Rover Mug, Engineering Gifts. ",
     discountedPrice: 1000,
     originalPrice: 2317,
@@ -24,6 +26,8 @@ export const products = [
     _id: uuid(),
     title: "KnittedLemonStudio",
     description: "Orion, Astronomy Print Of Orion Constellation In The Night Sky, .",
+    detailedDescription:
+      "Orion, Astronomy Print Of Orion Constellation In The Night Sky,Orion's Belt Star Map, Astronomy Gift, Orion Nebula, Gifts For Stargazers.",
     featuredProductDescription:
       "Orion's Belt Star Map, Astronomy Gift, Orion Nebula, Gifts For Stargazers. ",
     discountedPrice: 2000,
@@ -39,6 +43,8 @@ export const products = [
     _id: uuid(),
     title: "EastonWoodworks",
     description: "Orion Constellation Keychain.",
+    detailedDescription:
+      "This is a solid wood keychain made in the USA by me. The stars in the constellation are cut out which allows light to shine through, reminiscent of twinkling stars in the night sky. This would be a great gift for someone that likes astronomy!",
     featuredProductDescription:
       "Science Keychain - Astronomy Gift - Astronomy Keychain - Orion Keychain - Orion Nebula. ",
     discountedPrice: 300,
@@ -55,6 +61,8 @@ export const products = [
     _id: uuid(),
     title: "CenturyPrintsStore",
     description: "Antique Astronomy Wall Art Print.",
+    detailedDescription:
+      "This wonderful print was discovered within an early 1800's rare collection of Rees's Encyclopedias. Please note: the original has been sold. This is a modern reprint on museum-quality, thick, and durable matte paper.",
     featuredProductDescription: "Orion Star Constellation. ",
     discountedPrice: 2000,
     originalPrice: 3000,
@@ -70,6 +78,8 @@ export const products = [
     _id: uuid(),
     title: "Edkaris",
     description: "1886 Map of the Moon - Printable Moon Map ",
+    detailedDescription:
+      "The fastest, easiest, and least expensive way to decorate your space is with digital art. Download, print, frame, and hang in the perfect spot.This is an 1886 Telescopic View of the Moon. Names lunar seas, or gray plains, and lunar ring-mountains and craters. Multiple zoomed-in photos are in the gallery to illustrate the magnificent detail of the map.",
     featuredProductDescription: "Antique Lunar Map - Antique Map of Moon - 1800s Moon Map.",
     discountedPrice: 800,
     originalPrice: 1500,
@@ -85,6 +95,8 @@ export const products = [
     _id: uuid(),
     title: "PrintStopStudio",
     description: "Orion Constellation Unisex Shirt.",
+    detailedDescription:
+      "This listing is for a unisex Orion print t-shirt. The Orion nebula is one of the most recognisable constellations in the nights sky, making this t-shirt a perfect addition to any space lover's wardrobe. All of the artwork on our t-shirts is unique and exclusive to Print Stop Studio and are printed by a professional clothing printer.",
     featuredProductDescription:
       "Orion Nebula Hunter tshirt Eco Friendly Star Constellation Shirt Gift Idea Orion Belt Milky Way.",
     discountedPrice: 800,
@@ -101,6 +113,8 @@ export const products = [
     _id: uuid(),
     title: "IconicPassion",
     description: "Astronomy Gift, Astronomy Mug, Astronomy Coffee Cup, ",
+    detailedDescription:
+      "This mug tips its hat to the Curiosity rover, which has been exploring Mars and sending back data since 2012. Let it inspire you to keep asking questions. Stay curious.This sturdy mug holds 11 ounces of caffeinated bliss. It's dishwasher and microwave safe. Each mug ships in a fancy recyclable & collectable Kraft box.",
     featuredProductDescription:
       "Equatorial Star Map Gift, Equatorial Star Map Mug, Equatorial Star Map Coffee Cup  ",
     discountedPrice: 1300,
@@ -117,6 +131,8 @@ export const products = [
     _id: uuid(),
     title: "QualityAppearance",
     description: "Astronaut Spaceman Planets Funny Space Dwarf Solar System Astronomy T-Shirt ",
+    detailedDescription:
+      "Astronaut Spaceman Planets Funny Space Dwarf Solar System Astronomy T-Shirt, Space Geeks Gifts Astronauts Lovers Birthday Party Present Moon.",
     featuredProductDescription: "Space Geeks Gifts Astronauts Lovers Birthday Party Present Moon  ",
     discountedPrice: 1100,
     originalPrice: 1200,

@@ -13,7 +13,7 @@ const Signup = () => {
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState("");
   const [userInput, setUserInput] = useState({
-    name: "",
+    firstName: "",
     lastName: "",
     email: "",
     password: "",
@@ -33,11 +33,11 @@ const Signup = () => {
   const formSubmitHandler = e => {
     e.preventDefault();
 
-    const { name, lastName, email, password } = userInput;
+    const { firstName, lastName, email, password } = userInput;
 
     setSubmitted(true);
     if (!(Object.values(formErrors).length > 0)) {
-      signup({ name, lastName, email, password }, setLoader, setError);
+      signup({ firstName, lastName, email, password }, setLoader, setError);
       setFormErrors({});
     }
   };
@@ -54,10 +54,10 @@ const Signup = () => {
         {error && <p className="text-danger text-center">{error}</p>}
         <Input
           type="text"
-          defaultValue={userInput.name}
-          name="name"
+          defaultValue={userInput.firstName}
+          name="firstName"
           label="Name"
-          helperText={formErrors.name}
+          helperText={formErrors.firstName}
           showError={submitted}
           required={true}
           changeHandler={changeHandler}

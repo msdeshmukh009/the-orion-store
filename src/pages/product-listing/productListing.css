@@ -20,9 +20,8 @@
   top: 0;
   height: 800px;
   padding: var(--sm-space);
-  transition: all 0.2s ease-in-out;
   overflow: scroll;
-  z-index: 2;
+  z-index: 3;
 }
 .filter-title-mobile {
   display: none;
@@ -62,7 +61,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  z-index: 2;
+  z-index: 3;
   background-color: var(--secondary-color);
 }
 .filter-button:hover {
@@ -84,9 +83,6 @@
   position: absolute;
   top: 0;
   right: 10px;
-}
-.filter-btn {
-  display: none;
 }
 /*******/
 
@@ -128,20 +124,21 @@
   .filters {
     position: fixed;
     top: unset;
-    bottom: -100rem;
+    display: none;
   }
   .show-filters {
-    bottom: 0;
-    z-index: 2;
+    display: block;
+    bottom: 1rem;
+    z-index: 4;
     height: 100vh;
     width: 100%;
     background-color: var(--background-color);
     box-shadow: var(--sidebar-shadow);
-    transition: all 0.5s ease-in-out;
   }
-  .filter-btn,
+  .filter-button,
   .filter-button-div {
     display: block;
+    z-index: 4;
   }
 }
 /*******/

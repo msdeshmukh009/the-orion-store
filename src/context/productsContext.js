@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { minMaxReduce } from "../utils";
+import { getProductsService } from "../services";
 
 const categoryContext = createContext();
 
@@ -22,7 +23,7 @@ const ProductsProvider = ({ children }) => {
       try {
         setError("");
         setLoader(true);
-        const res = await axios.get("/api/products");
+        const res = await getProductsService();
         if (res.status === 200) {
           setProducts(res.data.products);
           setLoader(false);

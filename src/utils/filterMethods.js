@@ -31,6 +31,15 @@ const filterProducts = (state, data) => {
   return tempData;
 };
 
+const handleSearch = (list, searchTerm) => {
+  if (searchTerm !== "") {
+    return list.filter(item => {
+      return item.description.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  }
+  return list;
+};
+
 const minMaxReduce = (acc, curr) => {
   if (curr.discountedPrice > acc.max) {
     return { ...acc, max: curr.discountedPrice };
@@ -40,4 +49,4 @@ const minMaxReduce = (acc, curr) => {
     return acc;
   }
 };
-export { sortProducts, filterProducts, minMaxReduce };
+export { sortProducts, filterProducts, minMaxReduce, handleSearch };
