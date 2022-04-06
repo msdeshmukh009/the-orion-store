@@ -3,10 +3,11 @@ import { useState } from "react";
 import { AddToCartButton } from "../vertical-card/AddToCartButton";
 import { MoveToWishlist } from "./MoveToWishlistButton";
 import "./horizontalCard.css";
+import { Link } from "react-router-dom";
 
 const HorizontalCard = ({ product }) => {
   const {
-    _id,
+    id,
     title,
     description,
     featuredProductDescription,
@@ -20,12 +21,12 @@ const HorizontalCard = ({ product }) => {
   return (
     <div className="card horizontal-card">
       <span className="card-badge">New</span>
-      <div className="card-image-container">
+      <Link to={`/products/details/${id}`} className="card-image-container">
         <img className="responsive-img rounded-top-corner-img" src={image} alt={description} />
-      </div>
+      </Link>
 
       <div className="horizontal-card-content">
-        <div className="card-info-container text-left">
+        <Link to={`/products/details/${id}`} className="card-info-container text-left">
           <span className="text-bold card-heading">{title}</span>
           <span className="card-sub-heading text-gray">{description}</span>
           <div className="price">
@@ -37,7 +38,7 @@ const HorizontalCard = ({ product }) => {
             </span>
           </div>
           <div className="card-paragraph">{featuredProductDescription}</div>
-        </div>
+        </Link>
 
         <div className="card-call-to-action-horizontal">
           <AddToCartButton

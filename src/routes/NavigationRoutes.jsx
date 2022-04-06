@@ -1,5 +1,14 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Cart, Home, ProductListing, Wishlist, Signin, Signup } from "../pages";
+import {
+  Cart,
+  Home,
+  ProductListing,
+  Wishlist,
+  Signin,
+  Signup,
+  SingleProduct,
+  NotFound,
+} from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import Mockman from "mockman-js";
 import { useAuth } from "../context";
@@ -15,6 +24,7 @@ const NavigationRoutes = () => {
       <Route path="/products" element={<ProductListing />} />
       <Route path="/cart" element={<PrivateRoute element={Cart} />} />
       <Route path="/wishlist" element={<PrivateRoute element={Wishlist} />} />
+      <Route path="/products/details/:productId" element={<SingleProduct />} />
       <Route path="/mockman" element={<Mockman />} />
 
       {!token ? (
@@ -29,7 +39,7 @@ const NavigationRoutes = () => {
         </>
       )}
 
-      <Route path="*" element={<Navigate replace to="/" />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

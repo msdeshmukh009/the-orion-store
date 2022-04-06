@@ -1,9 +1,8 @@
-import { createContext } from "react";
-import { useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFilter } from "./filterContext";
-import axios from "axios";
 import { useProducts } from "./productsContext";
+import { getCategoriesService } from "../services";
 
 const categoryContext = createContext();
 
@@ -22,7 +21,7 @@ const CategoryProvider = ({ children }) => {
       try {
         setError("");
         setLoader(true);
-        const res = await axios.get("/api/categories");
+        const res = await getCategoriesService();
         if (res.status === 200) {
           setCategories(res.data.categories);
           setLoader(false);

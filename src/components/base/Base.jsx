@@ -1,3 +1,4 @@
+import "./base.css";
 import { Footer } from "../footer/Footer";
 import { Navbar } from "../navbar/Navbar";
 import { ScrollToTop } from "../scroll-to-top-button/ScrollToTopButton";
@@ -5,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { NavAside } from "../navbar/NavAside";
 import { useAuth } from "../../context";
-import "./base.css";
+import { Toaster } from "react-hot-toast";
 
 const Base = ({ children }) => {
   const { pathname } = useLocation();
@@ -22,6 +23,7 @@ const Base = ({ children }) => {
 
   return (
     <>
+      <Toaster />
       <Navbar navAside={navAside} setNavAside={setNavAside} />
       <NavAside navAside={navAside} setNavAside={setNavAside} />
       <div className="children-container">{children}</div>

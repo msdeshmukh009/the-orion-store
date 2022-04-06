@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { useAuth, useCart } from "../../context";
 import { useNavigate, Link } from "react-router-dom";
 
 const AddToCartButton = ({ product, setIsFetching, isFetching }) => {
-  // const [isFetching, setIsFetching] = useState(false);
   const { addToCart } = useCart();
   const navigation = useNavigate();
 

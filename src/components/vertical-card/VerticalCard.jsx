@@ -1,10 +1,12 @@
+import "./verticalCard.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { AddToCartButton } from "./AddToCartButton";
 import { AddToWishlistButton } from "./AddToWishlistButton";
-import "./verticalCard.css";
 
 const VerticalCard = ({ product }) => {
   const {
+    id,
     image,
     title,
     description,
@@ -20,9 +22,9 @@ const VerticalCard = ({ product }) => {
   return (
     <div className="card vertical-card">
       {!inStock && (
-        <div class="overlay-container">
-          <h2 class="overlay-text">Out of Stock</h2>
-        </div>
+        <Link className="overlay-container" to={`/products/details/${id}`}>
+          <h2 className="overlay-text">Out of Stock</h2>
+        </Link>
       )}
 
       <AddToWishlistButton
@@ -31,13 +33,14 @@ const VerticalCard = ({ product }) => {
         isFetching={isFetching}
       />
 
-      <div className="card-image-container">
+      <Link to={`/products/details/${id}`} className="card-image-container">
         <img
           className="responsive-img rounded-top-corner-img"
           src={image}
           alt={description}
           width="340"
           height="270"
+          loading="lazy"
         />
         <div className="rating-info">
           <span>
@@ -47,9 +50,9 @@ const VerticalCard = ({ product }) => {
           <span>|</span>
           <span>{numberOfReviews}</span>
         </div>
-      </div>
+      </Link>
 
-      <div className="card-info-container">
+      <Link to={`/products/details/${id}`} className="card-info-container">
         <span className="text-bold card-heading">{title}</span>
         <span className="card-sub-heading text-gray">{description}</span>
         <div className="price">
@@ -60,7 +63,7 @@ const VerticalCard = ({ product }) => {
             ₹ {new Intl.NumberFormat("en-IN").format(originalPrice)}
           </span>
         </div>
-      </div>
+      </Link>
       <div className="card-cta-vertical">
         <AddToCartButton product={product} setIsFetching={setIsFetching} isFetching={isFetching} />
       </div>

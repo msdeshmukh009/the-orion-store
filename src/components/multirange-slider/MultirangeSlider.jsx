@@ -1,6 +1,9 @@
+import "./multirangeSlider.css";
 import React, { useCallback, useEffect, useRef } from "react";
 import { useFilter } from "../../context";
-import "./multirangeSlider.css";
+import { filterActions } from "../../reducer/constant";
+
+const { SET_MIN, SET_MAX } = filterActions;
 
 const MultiRangeSlider = ({ min, max }) => {
   const { state, dispatch } = useFilter();
@@ -42,7 +45,7 @@ const MultiRangeSlider = ({ min, max }) => {
           value={minVal}
           onChange={event => {
             const value = Math.min(Number(event.target.value), maxVal - 100);
-            dispatch({ type: "SET_MIN", payload: value });
+            dispatch({ type: SET_MIN, payload: value });
           }}
           className="thumb thumb-left"
           style={{ zIndex: minVal > max - 100 && "5" }}
@@ -56,7 +59,7 @@ const MultiRangeSlider = ({ min, max }) => {
           className="thumb thumb-right"
           onChange={event => {
             const value = Math.max(Number(event.target.value), minVal + 100);
-            dispatch({ type: "SET_MAX", payload: value });
+            dispatch({ type: SET_MAX, payload: value });
           }}
         />
       </div>

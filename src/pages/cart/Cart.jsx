@@ -1,16 +1,18 @@
-import { CartCard } from "../../components";
+import { CartCard, Loading } from "../../components";
 import "./cart.css";
 import { BillDistribution } from "./BillDistribution";
 import { useCart } from "../../context";
 
 const Cart = () => {
   const {
-    state: { cartItems },
+    state: { cartItems, loading, error },
   } = useCart();
 
   return (
     <main className="cart-container">
       <h1 className="text-center">My Cart({cartItems?.length})</h1>
+      {loading && <Loading />}
+      {error && <p>{error}</p>}
       <div className="cart">
         <section className="cart-cards flex-total-center">
           {cartItems?.map(product => (

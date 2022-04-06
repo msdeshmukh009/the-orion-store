@@ -1,8 +1,14 @@
 /***nav-bar***/
-.nav {
-  box-shadow: var(--nav-bar-shadow);
+.nav-wrapper {
+  width: 100%;
   grid-area: nav;
-  z-index: 1005;
+  z-index: 4;
+  position: sticky;
+  top: 0;
+  box-shadow: var(--nav-bar-shadow);
+  background-color: var(--background-color);
+}
+.nav {
   max-width: 1800px;
   margin: auto;
 }
@@ -17,8 +23,11 @@
 }
 .nav-heading {
   font-family: "ultraregular", sans-serif;
-
   font-size: 2rem;
+}
+.mobile-search-bar {
+  display: none;
+  width: 100%;
 }
 /*******/
 
@@ -36,7 +45,8 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  left: -100rem;
+  left: 0;
+  display: none;
   width: 70%;
   z-index: 10;
   transition: 0.3s ease-in;
@@ -86,9 +96,7 @@
   border: 2px solid var(--text-color);
   padding: var(--sm-space);
 }
-.show-nav-aside {
-  left: 0;
-}
+.show-nav-aside,
 .show-nav-background {
   display: block;
 }
@@ -99,7 +107,8 @@
   .nav-list-web-item {
     display: none;
   }
-  .burger-menu {
+  .burger-menu,
+  .mobile-search-bar {
     display: block;
   }
 }

@@ -2,9 +2,9 @@ const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 var passwordFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
 
 const validFormChecker = userInput => {
-  const { name, lastName, email, password, confirmPassword, agreement } = userInput;
+  const { firstName, lastName, email, password, confirmPassword, agreement } = userInput;
   const err = {};
-  if (!name) {
+  if (!firstName) {
     err.name = "Enter valid name";
   }
 

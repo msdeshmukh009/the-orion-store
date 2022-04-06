@@ -1,7 +1,7 @@
 import { Loading, VerticalCard } from "../../components";
 import "./productListing.css";
 import { useFilter, useProducts } from "../../context";
-import { filterProducts, sortProducts } from "../../utils";
+import { filterProducts, sortProducts, handleSearch } from "../../utils";
 
 const ProductsGrid = ({ showFilters, setShowFilters }) => {
   const { state } = useFilter();
@@ -9,6 +9,7 @@ const ProductsGrid = ({ showFilters, setShowFilters }) => {
 
   const sortedList = sortProducts(state.sort, products);
   const filteredList = filterProducts(state, sortedList);
+  const finalList = handleSearch(filteredList, state.appliedSearchTerm);
 
   const filterButton = () => {
     return (
@@ -35,11 +36,15 @@ const ProductsGrid = ({ showFilters, setShowFilters }) => {
         {filterButton()}
         {loader && <Loading />}
         {error && <div>{error}</div>}
-        <main className="main-products">
-          {filteredList.map(product => (
-            <VerticalCard key={product._id} product={product} />
-          ))}
-        </main>
+        {finalList.length ? (
+          <main className="main-products">
+            {finalList.map(product => (
+              <VerticalCard key={product._id} product={product} />
+            ))}
+          </main>
+        ) : (
+          !loader && <p className="text-center">No products found</p>
+        )}
       </div>
     </>
   );

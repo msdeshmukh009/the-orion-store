@@ -15,6 +15,7 @@ const FilterProvider = ({ children }) => {
     category: [],
     rating: 1,
     range: { min: 0, max: 0 },
+    appliedSearchTerm: "",
   });
 
   useEffect(() => {

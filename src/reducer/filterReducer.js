@@ -1,6 +1,15 @@
 import { filterActions } from "./constant";
-const { SORT, TOGGLE_OUT_OF_STOCK, ADD_CATEGORY, SET_RATING, SET_RANGE, SET_MIN, SET_MAX, CLEAR } =
-  filterActions;
+const {
+  SORT,
+  TOGGLE_OUT_OF_STOCK,
+  ADD_CATEGORY,
+  SET_RATING,
+  SET_RANGE,
+  SET_MIN,
+  SET_MAX,
+  CLEAR,
+  APPLY_SEARCH_TERM,
+} = filterActions;
 const filterReducer = (state, action) => {
   switch (action.type) {
     case SORT:
@@ -42,7 +51,11 @@ const filterReducer = (state, action) => {
         ...state,
         range: { ...state.range, max: action.payload },
       };
-
+    case APPLY_SEARCH_TERM:
+      return {
+        ...state,
+        appliedSearchTerm: action.payload,
+      };
     case CLEAR:
       return {
         ...state,
