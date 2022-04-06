@@ -2,19 +2,21 @@ import "./singleProduct.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useProducts } from "../../context";
+import { Loading } from "../../components/loading/Loading";
 import { AddToCartButton } from "../../components/vertical-card/AddToCartButton";
 import { AddToWishlistButton } from "../../components/vertical-card/AddToWishlistButton";
+import { NotFound } from "../not-found/NotFound";
 
 const SingleProduct = () => {
   const [isFetching, setIsFetching] = useState({ cart: false, wishlist: false });
 
   const { productId } = useParams();
 
-  const { products } = useProducts();
+  const { products, loader } = useProducts();
 
   const productFound = products.find(product => product.id === productId);
 
-  return (
+  return productFound ? (
     <main className="main-product grid-50-50">
       <div className="product-img-container">
         <img className="responsive-img" src={productFound?.image} alt={productFound?.description} />
@@ -90,6 +92,10 @@ const SingleProduct = () => {
         </div>
       </div>
     </main>
+  ) : loader ? (
+    <Loading />
+  ) : (
+    <NotFound />
   );
 };
 
