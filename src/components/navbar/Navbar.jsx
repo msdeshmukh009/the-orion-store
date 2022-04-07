@@ -102,13 +102,13 @@ const Navbar = ({ navAside, setNavAside }) => {
 
           {token ? (
             <li className="nav-list-web-item">
-              <button className="btn btn-outline" onClick={() => logout()}>
-                <i className="fas fa-sign-out"></i>
-              </button>
+              <Link to="/user/profile" className="anchor-tag-badge-container">
+                <i className="fas fa-user "></i>
+              </Link>
             </li>
           ) : (
             <li className="nav-list-web-item">
-              <Link to="/signin" className="anchor-tag-badge-container ">
+              <Link to="/signin" className="anchor-tag-badge-container">
                 <i className="fas fa-user "></i>
               </Link>
             </li>

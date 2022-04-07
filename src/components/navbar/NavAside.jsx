@@ -3,7 +3,7 @@ import { useAuth } from "../../context";
 
 const NavAside = ({ navAside, setNavAside }) => {
   const {
-    state: { token },
+    state: { token, userName },
     logout,
   } = useAuth();
   return (
@@ -14,8 +14,15 @@ const NavAside = ({ navAside, setNavAside }) => {
       ></div>
       <div className={`nav-aside ${navAside ? "show-nav-aside" : ""}`}>
         <div className="nav-aside-head">
-          <div className="nav-aside-user">
-            <i className="fas fa-user"></i>
+          <div>
+            <Link className="nav-aside-user" to="/user/profile">
+              <img
+                className="responsive-img rounded-img"
+                src={`https://avatars.dicebear.com/api/identicon/your-custom-seed-${userName}.svg`}
+                alt="avatar"
+              />
+            </Link>
+            <span>{userName}</span>
           </div>
           <i className="fas fa-times" onClick={() => setNavAside(prevStatus => !prevStatus)}></i>
         </div>

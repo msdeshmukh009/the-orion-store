@@ -13,6 +13,7 @@ const useAuth = () => useContext(authContext);
 
 const initialState = {
   userName: JSON.parse(localStorage.getItem("jwt-orion-store"))?.userName || "",
+  email: JSON.parse(localStorage.getItem("jwt-orion-store"))?.email || "",
   token: JSON.parse(localStorage.getItem("jwt-orion-store"))?.token || "",
 };
 
@@ -31,17 +32,17 @@ const AuthProvider = ({ children }) => {
 
         const {
           encodedToken,
-          createdUser: { firstName },
+          createdUser: { firstName, email },
         } = res.data;
 
         localStorage.setItem(
           "jwt-orion-store",
-          JSON.stringify({ userName: firstName, token: encodedToken })
+          JSON.stringify({ userName: firstName, token: encodedToken, email: email })
         );
 
         dispatch({
           type: LOGIN_USER,
-          payload: { userName: firstName, token: encodedToken },
+          payload: { userName: firstName, token: encodedToken, email: email },
         });
         toast.success(`Hi! ${firstName}`, { icon: "👋" });
         navigate("/");
@@ -63,17 +64,17 @@ const AuthProvider = ({ children }) => {
 
         const {
           encodedToken,
-          foundUser: { firstName },
+          foundUser: { firstName, email },
         } = res.data;
 
         localStorage.setItem(
           "jwt-orion-store",
-          JSON.stringify({ userName: firstName, token: encodedToken })
+          JSON.stringify({ userName: firstName, token: encodedToken, email: email })
         );
 
         dispatch({
           type: LOGIN_USER,
-          payload: { userName: firstName, token: encodedToken },
+          payload: { userName: firstName, token: encodedToken, email: email },
         });
         toast.success(`Hi! ${firstName}`, { icon: "👋" });
         navigate(from, { replace: true });

@@ -34,11 +34,46 @@
   justify-content: space-between;
   margin: var(--sm-space) 0;
 }
+.show-coupon-modal {
+  display: flex;
+}
+.modal-close-btn {
+  cursor: pointer;
+}
+.offer-label {
+  border: 2px solid var(--secondary-color);
+  border-radius: 5px;
+  padding: var(--md-space);
+  display: grid;
+  grid-template-columns: 30% 70%;
+  justify-items: center;
+  align-items: center;
+  gap: var(--md-space);
+}
+.offer-label input[type="checkbox"] {
+  height: 1.5rem;
+  width: 1.5rem;
+  cursor: pointer;
+}
+.offer-label input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+}
+.dialog-box {
+  padding: var(--lg-space);
+  width: 30%;
+}
+.modal-close-btn {
+  top: 0;
+  right: 0;
+}
 /*** media-queries ***/
 @media only screen and (max-width: 1300px) {
   .cart {
     flex-direction: column;
     width: 100%;
+  }
+  .dialog-box {
+    width: 75%;
   }
 }
 @media only screen and (max-width: 900px) {

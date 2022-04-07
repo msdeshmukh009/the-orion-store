@@ -29,6 +29,7 @@
   display: none;
   width: 100%;
 }
+
 /*******/
 
 .burger-menu {
@@ -93,7 +94,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid var(--text-color);
+  border: 2px solid var(--primary-color);
   padding: var(--sm-space);
 }
 .show-nav-aside,
