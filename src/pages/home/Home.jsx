@@ -16,7 +16,7 @@ const Home = () => {
       >
         <div className="banner-content text-center flex-column">
           <h2 className="banner-heading">The orion store</h2>
-          <p className="banner-sub-heading">Lorem ipsum dolor sit amet Lorem, ipsum dolor.</p>
+          <p className="banner-sub-heading">Buy your space merchandise from here.</p>
           <div className="banner-cta flex-total-center">
             <Link to="/products" className="btn btn-primary">
               Shop now
