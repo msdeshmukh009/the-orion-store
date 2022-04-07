@@ -5,3 +5,4 @@ export { Wishlist } from "./wishlist/Wishlist";
 export { Signin, Signup } from "./authentication";
 export { SingleProduct } from "./single-product/SingleProduct";
 export { NotFound } from "./not-found/NotFound";
+export { Profile } from "./profile/Profile";
