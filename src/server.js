@@ -1,8 +1,5 @@
 import { Server, Model, RestSerializer } from "miragejs";
-import {
-  loginHandler,
-  signupHandler,
-} from "./backend/controllers/AuthController";
+import { loginHandler, signupHandler } from "./backend/controllers/AuthController";
 import {
   addItemToCartHandler,
   getCartItemsHandler,
@@ -13,15 +10,18 @@ import {
   getAllCategoriesHandler,
   getCategoryHandler,
 } from "./backend/controllers/CategoryController";
-import {
-  getAllProductsHandler,
-  getProductHandler,
-} from "./backend/controllers/ProductController";
+import { getAllProductsHandler, getProductHandler } from "./backend/controllers/ProductController";
 import {
   addItemToWishlistHandler,
   getWishlistItemsHandler,
   removeItemFromWishlistHandler,
 } from "./backend/controllers/WishlistController";
+import {
+  getAddressHandler,
+  addAddressHandler,
+  removeAddressHandler,
+  updateAddressHandler,
+} from "./backend/controllers/AddressController";
 import { categories } from "./backend/db/categories";
 import { products } from "./backend/db/products";
 import { users } from "./backend/db/users";
@@ -44,15 +44,13 @@ export function makeServer({ environment = "development" } = {}) {
     seeds(server) {
       // disballing console logs from Mirage
       server.logging = false;
-      products.forEach((item) => {
+      products.forEach(item => {
         server.create("product", { ...item });
       });
 
-      users.forEach((item) =>
-        server.create("user", { ...item, cart: [], wishlist: [] })
-      );
+      users.forEach(item => server.create("user", { ...item, cart: [], wishlist: [] }));
 
-      categories.forEach((item) => server.create("category", { ...item }));
+      categories.forEach(item => server.create("category", { ...item }));
     },
 
     routes() {
@@ -73,18 +71,18 @@ export function makeServer({ environment = "development" } = {}) {
       this.get("/user/cart", getCartItemsHandler.bind(this));
       this.post("/user/cart", addItemToCartHandler.bind(this));
       this.post("/user/cart/:productId", updateCartItemHandler.bind(this));
-      this.delete(
-        "/user/cart/:productId",
-        removeItemFromCartHandler.bind(this)
-      );
+      this.delete("/user/cart/:productId", removeItemFromCartHandler.bind(this));
 
       // wishlist routes (private)
       this.get("/user/wishlist", getWishlistItemsHandler.bind(this));
       this.post("/user/wishlist", addItemToWishlistHandler.bind(this));
-      this.delete(
-        "/user/wishlist/:productId",
-        removeItemFromWishlistHandler.bind(this)
-      );
+      this.delete("/user/wishlist/:productId", removeItemFromWishlistHandler.bind(this));
+
+      // addresse routes (private)
+      this.get("/user/address", getAddressHandler.bind(this));
+      this.post("/user/address", addAddressHandler.bind(this));
+      this.post("/user/address/:addressId", updateAddressHandler.bind(this));
+      this.delete("/user/address/:addressId", removeAddressHandler.bind(this));
     },
   });
 }

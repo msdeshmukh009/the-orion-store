@@ -15,5 +15,16 @@ export const users = [
     password: "adarshbalika",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    address: [
+      {
+        _id: uuid(),
+        name: "Adarsh Balika",
+        mobile: "5421231231",
+        zipCode: "400028",
+        street: "244 / Madhani Estate  Senapati Bapat Marg Dadar, Mumbai",
+        state: "Maharashtra",
+        country: "India",
+      },
+    ],
   },
 ];

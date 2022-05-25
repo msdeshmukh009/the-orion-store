@@ -12,3 +12,4 @@ export {
 } from "./wishlist-services";
 export { getCategoriesService } from "./getCategoriesService";
 export { getProductsService } from "./getProductsService";
+export { getAllAddress, addAddress, updateAddress, removeAddress } from "./address-services";

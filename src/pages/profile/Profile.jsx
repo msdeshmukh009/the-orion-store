@@ -1,5 +1,7 @@
 import "./profile.css";
 import { useAuth } from "../../context";
+import { Link } from "react-router-dom";
+import { ProfileOptionsList } from "./ProfileOptionsList";
 
 const Profile = () => {
   const {
@@ -12,11 +14,12 @@ const Profile = () => {
       <h2 className="text-center">User Profile</h2>
 
       <div className="profile">
+        <ProfileOptionsList />
         <div className="profile-info flex-total-center flex-column">
           <div className="avatar avatar-lg-size">
             <img
               className="responsive-img rounded-img"
-              src={`https://avatars.dicebear.com/api/identicon/your-custom-seed-${userName}.svg`}
+              src={`https://avatars.dicebear.com/api/initials/${userName}.svg`}
               alt="avatar"
             />
           </div>

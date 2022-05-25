@@ -9,6 +9,7 @@ import {
   SingleProduct,
   NotFound,
   Profile,
+  UserAddress,
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import Mockman from "mockman-js";
@@ -26,6 +27,7 @@ const NavigationRoutes = () => {
       <Route path="/cart" element={<PrivateRoute element={Cart} />} />
       <Route path="/wishlist" element={<PrivateRoute element={Wishlist} />} />
       <Route path="/user/profile" element={<PrivateRoute element={Profile} />} />
+      <Route path="/user/address" element={<PrivateRoute element={UserAddress} />} />
       <Route path="/products/details/:productId" element={<SingleProduct />} />
       <Route path="/mockman" element={<Mockman />} />
 
