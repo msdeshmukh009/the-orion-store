@@ -1,7 +1,7 @@
 import { CartCard, Loading } from "../../components";
 import "./cart.css";
 import { BillDistribution } from "./BillDistribution";
-import { useCart } from "../../context";
+import { useAddress, useCart } from "../../context";
 
 const Cart = () => {
   const {

@@ -20,6 +20,9 @@
   display: flex;
   justify-content: center;
 }
+.address-card {
+  border: 2px solid var(--secondary-border);
+}
 .profile-list {
   row-gap: var(--xxl-space);
   padding: var(--md-space);

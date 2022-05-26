@@ -14,3 +14,4 @@ export { OverlayContainer } from "./overlay-container/OverlayContainer";
 export { NavAside } from "./navbar/NavAside";
 export { AddressModal } from "./address-modal/AddressModal";
 export { AddressCard } from "./address-card/AddressCard";
+export { Order } from "./order/Order";

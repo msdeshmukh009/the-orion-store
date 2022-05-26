@@ -95,9 +95,7 @@ export const addAddressHandler = function (schema, request) {
  * */
 
 export const removeAddressHandler = function (schema, request) {
-  console.log("Here");
   const userId = requiresAuth.call(this, request);
-  console.log(userId);
   try {
     if (!userId) {
       new Response(

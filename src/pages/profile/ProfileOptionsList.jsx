@@ -33,7 +33,7 @@ const ProfileOptionsList = () => {
           Orders
         </NavLink>
       </li>
-      <li className="profile-list-item flex-total-center">
+      {/* <li className="profile-list-item flex-total-center">
         <NavLink
           to="/user/settings"
           className={({ isActive }) =>
@@ -42,7 +42,7 @@ const ProfileOptionsList = () => {
         >
           Settings
         </NavLink>
-      </li>
+      </li> */}
     </ul>
   );
 };
