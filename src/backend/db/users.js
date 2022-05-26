@@ -28,4 +28,25 @@ export const users = [
       },
     ],
   },
+  {
+    _id: uuid(),
+    firstName: "Jonathan",
+    lastName: "Joestar",
+    email: "jonathan@gmail.com",
+    password: "Jojo@999",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+    orders: [],
+    address: [
+      {
+        _id: uuid(),
+        name: "Jonathan Joestar",
+        mobile: "5421231231",
+        zipCode: "400028",
+        street: "244 / Madhani Estate  Senapati Bapat Marg Dadar, Mumbai",
+        state: "Maharashtra",
+        country: "India",
+      },
+    ],
+  },
 ];
