@@ -142,7 +142,7 @@ const BillDistribution = ({ selectedAddress }) => {
         </div>
         <div className="bill-unit">
           <p>Discount</p>
-          <p>-₹ {totalPrices.originalPrice - finalPrice}</p>
+          <p>-₹ {totalPrices.originalPrice - totalPrices.discountedPrice}</p>
         </div>
         <div className="bill-unit">
           <p>
