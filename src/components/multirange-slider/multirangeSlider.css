@@ -69,10 +69,10 @@
   background-color: var(--secondary-color);
   border: none;
   border-radius: 50%;
-  box-shadow: 0 0 1px 1px #ced4da;
+  box-shadow: 1px 0 1px 1px #ced4da;
   cursor: pointer;
-  height: 10px;
-  width: 10px;
+  height: 13px;
+  width: 13px;
   margin-top: 4px;
   pointer-events: all;
   position: relative;
@@ -85,8 +85,8 @@
   border-radius: 50%;
   box-shadow: 0 0 1px 1px #ced4da;
   cursor: pointer;
-  height: 10px;
-  width: 10px;
+  height: 13px;
+  width: 13px;
   margin-top: 4px;
   pointer-events: all;
   position: relative;

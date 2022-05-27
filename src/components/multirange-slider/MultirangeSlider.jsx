@@ -36,7 +36,7 @@ const MultiRangeSlider = ({ min, max }) => {
 
   return (
     <>
-      <div style={{ width: "0px" }}>
+      <div>
         <input
           type="range"
           min={min}
