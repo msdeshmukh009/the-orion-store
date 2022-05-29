@@ -38,10 +38,10 @@ const Signin = () => {
     e.preventDefault();
     setSubmitted(true);
     setUserInput({
-      email: "adarshbalika@gmail.com",
-      password: "adarshbalika",
+      email: "jonathan@gmail.com",
+      password: "Jojo@999",
     });
-    login({ email: "adarshbalika@gmail.com", password: "adarshbalika" }, setLoader, setError, from);
+    login({ email: "jonathan@gmail.com", password: "Jojo@999" }, setLoader, setError, from);
   };
 
   useEffect(() => {

@@ -9,6 +9,7 @@ import {
   addToCartService,
   changeQuantityService,
   removeFromCartService,
+  clearCartService,
 } from "../services";
 
 const cartContext = createContext();
@@ -103,7 +104,17 @@ const CartProvider = ({ children }) => {
 
     removeFromCart(product._id);
   };
+  const clearCart = async () => {
+    try {
+      const { status, data } = await clearCartService(token);
 
+      if (status === 201) {
+        dispatch({ type: SET_CART, payload: data.cart });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <cartContext.Provider
       value={{
@@ -113,6 +124,7 @@ const CartProvider = ({ children }) => {
         changeQuantity,
         removeFromCart,
         moveItemFromCartToWishlist,
+        clearCart,
       }}
     >
       {children}

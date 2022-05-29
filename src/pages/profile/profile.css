@@ -18,8 +18,10 @@
   border-top: var(--secondary-border);
   width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+}
+.address-card {
+  border: 2px solid var(--secondary-border);
 }
 .profile-list {
   row-gap: var(--xxl-space);
@@ -53,6 +55,29 @@
 .address-info {
   align-items: stretch;
 }
+.profile-container .txt-message {
+  right: unset;
+}
+.address-head {
+  justify-content: space-between;
+}
+.delete-btn:hover {
+  color: brown;
+}
+.input-grp {
+  margin: var(--md-space) 0;
+}
+.address-modal-cta {
+  margin-top: var(--lg-space);
+  display: flex;
+  justify-content: center;
+  column-gap: var(--sm-space);
+}
+.card-text {
+  display: flex;
+  column-gap: var(--md-space);
+  flex-wrap: wrap;
+}
 .details {
   width: 100%;
   row-gap: var(--lg-space);
@@ -76,7 +101,7 @@
 /*******/
 
 /*** media-queries ***/
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1000px) {
   .profile-list {
     display: none;
   }
