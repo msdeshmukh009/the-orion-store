@@ -18,7 +18,8 @@ const CouponModal = ({
           {coupons.map(coupon => (
             <label key={coupon.offerName} className="offer-label">
               <input
-                type="checkbox"
+                type="radio"
+                name="offer"
                 disabled={totalPrice < coupon.minBillAmount}
                 value="off200"
                 checked={coupons.offerStatus}
@@ -26,8 +27,8 @@ const CouponModal = ({
                   setCoupons(prevState =>
                     prevState.map(eachCoupon =>
                       eachCoupon.offerName === coupon.offerName
-                        ? { ...eachCoupon, offerStatus: !eachCoupon.offerStatus }
-                        : eachCoupon
+                        ? { ...eachCoupon, offerStatus: true }
+                        : { ...eachCoupon, offerStatus: false }
                     )
                   )
                 }

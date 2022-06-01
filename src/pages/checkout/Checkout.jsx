@@ -24,7 +24,8 @@ const Checkout = () => {
           {address?.map(address => (
             <label key={address._id} className="address-radio">
               <input
-                type="checkbox"
+                type="radio"
+                name="address"
                 checked={selectedAddressId === address._id}
                 onChange={() => setSelectedAddressId(address._id)}
               />
